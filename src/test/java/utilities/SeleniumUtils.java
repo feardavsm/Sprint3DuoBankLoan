@@ -147,28 +147,23 @@ public class SeleniumUtils {
 
 
 
-    public static String getScreenshot(String name) throws IOException {
+    public static String getScreenshot(String name)  {
         TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
         File source = ts.getScreenshotAs(OutputType.FILE);
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-        String target = System.getProperty("user.dir") + "/test-output/Screenshots/" + name + date + ".png";
+        String fileName = name + date + ".png";
+        String target = System.getProperty("user.dir") + "/test-output/extentReports/" + fileName;
         File finalDestination = new File(target);
-        FileUtils.copyFile(source, finalDestination);
-        return target;
-    }
-    public static void takeScreenshot(String fileName)  {
-        TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
-        File source = ts.getScreenshotAs(OutputType.FILE);
-        String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-        String path = System.getProperty("user.dir") + "/test-output/Screenshots/" + fileName + date + ".png";
-        File finalDestination = new File(path);
         try {
             FileUtils.copyFile(source, finalDestination);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        return fileName;
     }
+
+
+
     public static void takeFullScreenshot(String fileName)  {
         Screenshot fpScreenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000))
                 .takeScreenshot(Driver.getDriver());
