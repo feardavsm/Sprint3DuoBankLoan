@@ -39,7 +39,7 @@ public class SignUpTests extends TestBase{
 
 
     @Test (groups = {"smoke"})
-    public void signUpWithFaker() throws InterruptedException {
+    public void signUpWithFaker() {
 
         SignUpPage signUpPage = new SignUpPage();
 
@@ -98,7 +98,6 @@ public class SignUpTests extends TestBase{
         JavascriptExecutor js = (JavascriptExecutor) driver;
         boolean requiredEmailAddressErrorMessage = (Boolean) js.executeScript("return arguments[0].required;", inputEmail);
         Assert.assertTrue(requiredEmailAddressErrorMessage);
-
 
     }
 

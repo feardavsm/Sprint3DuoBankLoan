@@ -21,6 +21,7 @@ public class LoginPage extends PageBase {
     @FindBy(xpath = "//a[@href='mortagage.php']")
     public WebElement mortgageApplicationMenu;
 
+
     public void login(String username, String pass) {
         usernameField.sendKeys(username);
         passwordField.sendKeys(pass);

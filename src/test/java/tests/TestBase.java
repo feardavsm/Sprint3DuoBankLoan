@@ -24,8 +24,6 @@ public class TestBase {
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.get(ConfigReader.getProperty("url"));
-
-
     }
 
 
