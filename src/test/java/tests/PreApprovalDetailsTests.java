@@ -21,7 +21,7 @@ public class PreApprovalDetailsTests extends TestBase {
 
     }
 
-    @Test(groups = {"smoke"})
+    @Test
     public void positiveTestPreApprovalDetails() {
 
         PreApprovalDetaisPage preApprovalDetaisPage = new PreApprovalDetaisPage();
@@ -71,7 +71,7 @@ public class PreApprovalDetailsTests extends TestBase {
     }
 
 
-    @Test(groups = {"smoke"})
+    @Test
     public void negativeTestPreApprovalDetailsWithoutData() {
         PreApprovalDetaisPage preApprovalDetaisPage = new PreApprovalDetaisPage();
         preApprovalDetaisPage.next.click();
