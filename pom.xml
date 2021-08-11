@@ -88,8 +88,6 @@
                         <suiteXmlFiles>
                             <!--suppress UnresolvedMavenProperty -->
                             <suiteXmlFile>${xmlFile}</suiteXmlFile>
-                            <!--suppress UnresolvedMavenProperty -->
-<!--                            <suiteXmlFile>${xmlFile2}</suiteXmlFile>-->
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>
