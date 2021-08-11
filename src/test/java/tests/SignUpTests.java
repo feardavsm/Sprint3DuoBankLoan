@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class SignUpTests extends TestBase{
+public class SignUpTests extends TestBase {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
-    public void setupMethod(@Optional String browser, Method method){
+    public void setupMethod(@Optional String browser, Method method) {
 
         driver = Driver.getDriver(browser);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -38,7 +38,7 @@ public class SignUpTests extends TestBase{
     }
 
 
-    @Test (groups = {"smoke"})
+    @Test(groups = {"smoke"})
     public void signUpWithFaker() {
 
         SignUpPage signUpPage = new SignUpPage();
@@ -57,8 +57,8 @@ public class SignUpTests extends TestBase{
 
     }
 
-    @Test (groups = {"smoke"})
-    public void signUpWithoutData(){
+    @Test(groups = {"smoke"})
+    public void signUpWithoutData() {
 
         SignUpPage signUpPage = new SignUpPage();
 
@@ -73,7 +73,7 @@ public class SignUpTests extends TestBase{
         JavascriptExecutor js = (JavascriptExecutor) driver;
         boolean isRequired;
 
-        for(int i = 0; i < signUpTable.size(); i++) {
+        for (int i = 0; i < signUpTable.size(); i++) {
 
             WebElement inputElement = signUpTable.get(i);
             isRequired = (Boolean) js.executeScript("return arguments[0].required;", inputElement);
@@ -83,8 +83,8 @@ public class SignUpTests extends TestBase{
 
     }
 
-    @Test (groups = {"smoke"})
-    public void signUpWithWrongEmailInput(){
+    @Test(groups = {"smoke"})
+    public void signUpWithWrongEmailInput() {
 
         SignUpPage signUpPage = new SignUpPage();
         Faker fake = new Faker();

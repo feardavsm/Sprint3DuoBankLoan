@@ -10,12 +10,12 @@ public class CSVReader {
 
     public static Object[][] readData(String path) throws IOException {
 
-        FileReader fr = new FileReader(path);
+        FileReader fileReader = new FileReader(path);
         List<String[]> list = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(fr);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
         String line;
         int columns = 0;
-        while((line = bufferedReader.readLine()) != null ){
+        while ((line = bufferedReader.readLine()) != null) {
             String[] split = line.split(",");
             columns = split.length;
             list.add(split);

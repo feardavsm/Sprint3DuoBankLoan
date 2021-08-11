@@ -19,7 +19,7 @@ public class ConfigReader {
         }
     }
 
-    public static String getProperty(String key)  {  // wrapper method
+    public static String getProperty(String key) {  // wrapper method
         return prop.getProperty(key);
     }
 

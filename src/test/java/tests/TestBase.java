@@ -15,9 +15,9 @@ public class TestBase {
     WebDriver driver;
 
 
-    @BeforeMethod (alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     @Parameters("browser")
-    public void setupMethod(@Optional String browser){
+    public void setupMethod(@Optional String browser) {
 
         driver = Driver.getDriver(browser);
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -27,8 +27,8 @@ public class TestBase {
     }
 
 
-    @AfterMethod  (alwaysRun = true)
-    public void tearDownMethod(){
+    @AfterMethod(alwaysRun = true)
+    public void tearDownMethod() {
 
         Driver.quitDriver();
     }

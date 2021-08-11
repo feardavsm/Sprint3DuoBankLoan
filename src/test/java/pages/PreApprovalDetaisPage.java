@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PreApprovalDetaisPage extends PageBase{
+public class PreApprovalDetaisPage extends PageBase {
 
     @FindBy(xpath = "//*[@id='realtor1']")
     public WebElement checkBoxrealtor1;
@@ -55,13 +55,6 @@ public class PreApprovalDetaisPage extends PageBase{
 
     @FindBy(xpath = "//*[@id='downpaymentpercentage-error']")
     public WebElement downPaymentPercentRequired;
-
-
-
-
-
-
-
 
 
 }

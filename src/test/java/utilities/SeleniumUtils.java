@@ -35,14 +35,17 @@ public class SeleniumUtils {
 
     /**
      * To hover over an element
+     *
      * @param element
      */
     public static void hover(WebElement element) {
         Actions actions = new Actions(Driver.getDriver());
         actions.moveToElement(element).perform();
     }
+
     /**
      * Extract list of String out of list of webelements
+     *
      * @param list
      * @return
      */
@@ -57,13 +60,13 @@ public class SeleniumUtils {
     }
 
 
-
     // Explicit Wait methods
 
     public static void waitForVisibility(WebElement element, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOf(element)));
     }
+
     public static void waitForVisibility(By locator, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(locator)));
@@ -74,6 +77,7 @@ public class SeleniumUtils {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(element)));
     }
+
     public static void waitForClickablility(By locator, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(locator)));
@@ -88,10 +92,12 @@ public class SeleniumUtils {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.titleContains(partOfTitle)));
     }
+
     public static void waitForTitleIs(String title, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.titleIs(title)));
     }
+
     public static void waitForUrlContains(String partOfUrl, int seconds) {
         WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
         wait.until(ExpectedConditions.refreshed(ExpectedConditions.urlContains(partOfUrl)));
@@ -106,6 +112,7 @@ public class SeleniumUtils {
             e.printStackTrace();
         }
     }
+
     public static void waitForPageToLoad(int seconds) {
         ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {
@@ -121,7 +128,6 @@ public class SeleniumUtils {
     }
 
 
-
     public static WebElement fluentWait(WebElement webElement, int timeOutSeconds, int pollingSeconds) {
         Wait<WebDriver> wait = new FluentWait<WebDriver>(Driver.getDriver())
                 .withTimeout(Duration.ofSeconds(timeOutSeconds)).pollingEvery(Duration.ofSeconds(pollingSeconds))
@@ -133,6 +139,7 @@ public class SeleniumUtils {
         });
         return element;
     }
+
     public static boolean elementExists(WebElement element, int seconds) {
         try {
             WebDriverWait wait = new WebDriverWait(Driver.getDriver(), seconds);
@@ -144,10 +151,7 @@ public class SeleniumUtils {
     }
 
 
-
-
-
-    public static String getScreenshot(String name)  {
+    public static String getScreenshot(String name) {
         TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
         File source = ts.getScreenshotAs(OutputType.FILE);
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -163,8 +167,7 @@ public class SeleniumUtils {
     }
 
 
-
-    public static void takeFullScreenshot(String fileName)  {
+    public static void takeFullScreenshot(String fileName) {
         Screenshot fpScreenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000))
                 .takeScreenshot(Driver.getDriver());
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -180,22 +183,20 @@ public class SeleniumUtils {
 
 
     public static void scroll(int horizontalAxis, int verticalAxis) {
-        JavascriptExecutor js = (JavascriptExecutor)Driver.getDriver();
-        js.executeScript("window.scrollBy("+horizontalAxis+","+verticalAxis+")");
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
+        js.executeScript("window.scrollBy(" + horizontalAxis + "," + verticalAxis + ")");
     }
 
 
     public static void jsClick(WebElement webelement) {
-        JavascriptExecutor js = (JavascriptExecutor)Driver.getDriver();
+        JavascriptExecutor js = (JavascriptExecutor) Driver.getDriver();
         js.executeScript("arguments[0].click();", webelement);
     }
 
 
-    public static void uploadFile(By chooseFileButton, String pathToAFileToBeUploaded ) {
+    public static void uploadFile(By chooseFileButton, String pathToAFileToBeUploaded) {
         Driver.getDriver().findElement(chooseFileButton).sendKeys(pathToAFileToBeUploaded);
     }
-
-
 
 
 }

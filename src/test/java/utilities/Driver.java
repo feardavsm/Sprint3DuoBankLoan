@@ -11,36 +11,33 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
 /**
- Utility class that follows the Singleton pattern to initialize and to quit the WebDriver instance
+ * Utility class that follows the Singleton pattern to initialize and to quit the WebDriver instance
  */
 public class Driver {
 
 
     private static WebDriver driver;
 
-    private Driver() {}
-
-
-    public static WebDriver getDriver(){
-       return getDriver(null);
+    private Driver() {
     }
 
 
-
-    public static WebDriver getDriver(String browser){
-
-
-
-
-        if(driver == null){
+    public static WebDriver getDriver() {
+        return getDriver(null);
+    }
 
 
+    public static WebDriver getDriver(String browser) {
 
-            if(browser==null){
-               browser = ConfigReader.getProperty("browser");
+
+        if (driver == null) {
+
+
+            if (browser == null) {
+                browser = ConfigReader.getProperty("browser");
             }
 
-            switch(browser){
+            switch (browser) {
 
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
@@ -79,7 +76,8 @@ public class Driver {
                     driver = new SafariDriver();
                     break;
                 default:
-                    System.out.println("Invalid browser");;
+                    System.out.println("Invalid browser");
+                    ;
                     break;
             }
 
@@ -89,13 +87,12 @@ public class Driver {
     }
 
 
-    public static void quitDriver(){
-        if(driver != null){
+    public static void quitDriver() {
+        if (driver != null) {
             driver.quit();
             driver = null;
         }
     }
-
 
 
 }

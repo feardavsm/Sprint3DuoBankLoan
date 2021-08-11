@@ -29,17 +29,14 @@ public class PreApprovalDetailsTests extends TestBase {
 
         if (!preApprovalDetaisPage.checkBoxrealtor1.isSelected()) {
             preApprovalDetaisPage.checkBoxrealtor1.click();
-        } else {
-            System.out.println("Yes checkbox is preselected");
         }
 
         preApprovalDetaisPage.realtorInfo.sendKeys(fake.name().fullName());
 
         if (!preApprovalDetaisPage.checkBoxLoanOfficer1.isSelected()) {
             preApprovalDetaisPage.checkBoxLoanOfficer1.click();
-        } else {
-            System.out.println("Yes checkbox is preselected");
         }
+
 //        Select selectPurposeOfLoan = new Select(preApprovalDetaisPage.purposeOfLoan);
 //        selectPurposeOfLoan.selectByVisibleText("Purchase a Home");
 

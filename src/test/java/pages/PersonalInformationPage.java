@@ -4,9 +4,9 @@ import org.apache.bcel.generic.Select;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class PersonalInformationPage extends PageBase{
+public class PersonalInformationPage extends PageBase {
 
-    @FindBy(xpath = "//input[@type='checkbox' and @id='coborrower1']")
+    @FindBy(xpath = "//*[@id='coborrower2']")
     public WebElement coBorrowerNoCheckBox;
 
     @FindBy(xpath = "//input[@name='b_firstName']")
@@ -42,22 +42,8 @@ public class PersonalInformationPage extends PageBase{
     @FindBy(xpath = "//a[@href='#next']")
     public WebElement nextButton;
 
-    @FindBy(xpath = "//label[@for=\"privacypolicy\"]")
+    @FindBy(xpath = "//*[@id='privacypolicy']")
     public WebElement privacyPolicyCheckBox;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

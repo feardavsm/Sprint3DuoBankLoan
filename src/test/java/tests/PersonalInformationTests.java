@@ -2,16 +2,23 @@ package tests;
 
 import com.github.javafaker.Faker;
 import javafx.util.converter.LocalDateStringConverter;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.PersonalInformationPage;
 import pages.PreApprovalDetaisPage;
+import utilities.CSVReader;
 import utilities.ConfigReader;
+import utilities.Driver;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.concurrent.TimeUnit;
 
@@ -19,7 +26,7 @@ import java.util.concurrent.TimeUnit;
 public class PersonalInformationTests extends TestBase {
 
     @BeforeMethod(alwaysRun = true)
-    public void loginSetup(){
+    public void loginSetup() {
 
         LoginPage loginPage = new LoginPage();
         loginPage.login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
@@ -29,32 +36,37 @@ public class PersonalInformationTests extends TestBase {
         preApproval.positiveTestPreApprovalDetails();
     }
 
-    Faker fake = new Faker();
+    @DataProvider(name = "fromCsvFile")
+    public Object[][] getDataFromCSV() throws IOException {
+        return CSVReader.readData("validTestDataForPersonalInfoPage.csv");
+    }
 
-    @Test
-    public void verifyWithValidInformation() throws InterruptedException {
+    @Test(dataProvider = "fromCsvFile")
+    public void verifyWithValidInformation(String firstName, String middleName, String lastName,
+                                            String email, String dateOfBirth, String ssn,
+                                            String cellPhone, String homePhone) {
 
         PersonalInformationPage personalInformationPage = new PersonalInformationPage();
-        personalInformationPage.firstName.sendKeys(fake.name().firstName());
-        personalInformationPage.middleName.sendKeys(fake.name().firstName());
-        personalInformationPage.lastName.sendKeys(fake.name().lastName());
-
-        Select selectBox = new Select(personalInformationPage.suffixDropDownList);
-        selectBox.selectByIndex((int)(1+(Math.random()*5)));
-
-        personalInformationPage.email.sendKeys(fake.internet().emailAddress());
-        personalInformationPage.dateOfBirth.sendKeys("12122021");
-        personalInformationPage.ssn.sendKeys(fake.regexify("([0-9]{9})"));
-
-        Select selectBox2 = new Select(personalInformationPage.martialStatus);
-        selectBox2.selectByIndex((int)(1+(Math.random()*3)));
-
-        personalInformationPage.cellPhone.sendKeys(fake.phoneNumber().cellPhone());
-        personalInformationPage.homePhone.sendKeys(fake.phoneNumber().phoneNumber());
-        personalInformationPage.privacyPolicyCheckBox.isSelected();
+        if (!personalInformationPage.coBorrowerNoCheckBox.isSelected()) {
+            personalInformationPage.coBorrowerNoCheckBox.click();
+        }
+        personalInformationPage.firstName.sendKeys(firstName);
+        personalInformationPage.middleName.sendKeys(middleName);
+        personalInformationPage.lastName.sendKeys(lastName);
+        Select selectBoxSuffix = new Select(personalInformationPage.suffixDropDownList);
+        selectBoxSuffix.selectByIndex((int) (1 + (Math.random() * 5)));
+        personalInformationPage.email.sendKeys(email);
+        personalInformationPage.dateOfBirth.sendKeys(dateOfBirth);
+        personalInformationPage.ssn.sendKeys(ssn);
+        Select selectBoxStatus = new Select(personalInformationPage.martialStatus);
+        selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
+        personalInformationPage.cellPhone.sendKeys(cellPhone);
+        personalInformationPage.homePhone.sendKeys(homePhone);
+        if (!personalInformationPage.privacyPolicyCheckBox.isSelected()) {
+            personalInformationPage.privacyPolicyCheckBox.click();
+        }
         personalInformationPage.nextButton.click();
-
-
-
     }
+
+
 }

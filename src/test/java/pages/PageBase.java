@@ -5,7 +5,7 @@ import utilities.Driver;
 
 public class PageBase {
 
-    public PageBase(){
+    public PageBase() {
         PageFactory.initElements(Driver.getDriver(), this);
     }
 }

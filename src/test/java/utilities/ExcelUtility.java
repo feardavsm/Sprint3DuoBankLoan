@@ -17,8 +17,6 @@ import java.util.Map;
 public class ExcelUtility {
 
 
-
-
     private XSSFWorkbook workBook;
     private XSSFSheet sheet;
     private String path;
@@ -34,6 +32,7 @@ public class ExcelUtility {
             throw new RuntimeException(e);
         }
     }
+
     public String getCellData(int rowNum, int colNum) {
         XSSFCell cell;
         try {
@@ -44,15 +43,18 @@ public class ExcelUtility {
             return "";
         }
     }
+
     public int rowCount() {
         return sheet.getPhysicalNumberOfRows();
     }
+
     public int columnCount() {
         return sheet.getRow(0).getLastCellNum();
     }
+
     public String[][] getDataAs2DArray() {
         String[][] table = new String[rowCount()][columnCount()];
-        for (int i = 0; i <rowCount(); i++) {
+        for (int i = 0; i < rowCount(); i++) {
             for (int j = 0; j < columnCount(); j++) {
                 String value = getCellData(i, j);
                 table[i][j] = value;
@@ -60,6 +62,7 @@ public class ExcelUtility {
         }
         return table;
     }
+
     public List<Map<String, String>> getDataAsMap() {
         List<String> columnNames = getColumnNames(); // gets the names of columns
         List<Map<String, String>> data = new ArrayList<>();
@@ -75,6 +78,7 @@ public class ExcelUtility {
         }
         return data;
     }
+
     public List<String> getColumnNames() {
         List<String> columns = new ArrayList<>();
         for (Cell cell : sheet.getRow(0)) {
@@ -82,6 +86,7 @@ public class ExcelUtility {
         }
         return columns;
     }
+
     public void setCellData(String value, int rowNum, int colNum) {
         XSSFCell cell;
         XSSFRow row;
@@ -101,6 +106,7 @@ public class ExcelUtility {
             e.printStackTrace();
         }
     }
+
     public void setCellData(String value, String columnName, int row) {
         int column = getColumnNames().indexOf(columnName);
         setCellData(value, row, column);
