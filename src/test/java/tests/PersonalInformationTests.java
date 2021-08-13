@@ -1,26 +1,17 @@
 package tests;
 
-import com.github.javafaker.Faker;
-import javafx.util.converter.LocalDateStringConverter;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import pages.PersonalInformationPage;
-import pages.PreApprovalDetaisPage;
 import utilities.CSVReader;
 import utilities.ConfigReader;
-import utilities.Driver;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.util.concurrent.TimeUnit;
 
 
 public class PersonalInformationTests extends TestBase {
@@ -42,9 +33,9 @@ public class PersonalInformationTests extends TestBase {
     }
 
     @Test(dataProvider = "fromCsvFile")
-    public void verifyWithValidInformation(String firstName, String middleName, String lastName,
-                                            String email, String dateOfBirth, String ssn,
-                                            String cellPhone, String homePhone) {
+    public void verifyWithValidCredentials(String firstName, String middleName, String lastName,
+                                           String email, String dateOfBirth, String ssn,
+                                           String cellPhone, String homePhone) {
 
         PersonalInformationPage personalInformationPage = new PersonalInformationPage();
         if (!personalInformationPage.coBorrowerNoCheckBox.isSelected()) {
@@ -66,6 +57,31 @@ public class PersonalInformationTests extends TestBase {
             personalInformationPage.privacyPolicyCheckBox.click();
         }
         personalInformationPage.nextButton.click();
+    }
+
+
+    @Test()
+    public void verifyWithNoCredentials() {
+
+        PersonalInformationPage personalInformationPage = new PersonalInformationPage();
+        personalInformationPage.nextButton.click();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        boolean firstNameRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.firstName);
+        Assert.assertTrue(firstNameRequired);
+        boolean lastNameRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.lastName);
+        Assert.assertTrue(lastNameRequired);
+        boolean emailRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.email);
+        Assert.assertTrue(emailRequired);
+        boolean dateRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.dateOfBirth);
+        Assert.assertTrue(dateRequired, "Date of birth field is not mandotary.");
+        boolean ssnRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.ssn);
+        Assert.assertTrue(ssnRequired);
+        boolean statusRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.martialStatus);
+        Assert.assertTrue(statusRequired);
+        boolean cellPhoneRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.cellPhone);
+        Assert.assertTrue(cellPhoneRequired);
+        boolean privacyPhoneRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.privacyPolicyCheckBox);
+        Assert.assertTrue(privacyPhoneRequired);
     }
 
 

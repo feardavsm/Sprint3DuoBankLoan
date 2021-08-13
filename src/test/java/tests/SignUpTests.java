@@ -42,7 +42,6 @@ public class SignUpTests extends TestBase {
     public void signUpWithFaker() {
 
         SignUpPage signUpPage = new SignUpPage();
-
         Faker fake = new Faker();
         signUpPage.firstName.sendKeys(fake.name().firstName());
         signUpPage.lastName.sendKeys(fake.name().lastName());
