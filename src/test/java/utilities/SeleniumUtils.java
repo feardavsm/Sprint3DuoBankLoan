@@ -151,7 +151,7 @@ public class SeleniumUtils {
     }
 
 
-    public static String getScreenshot(String name) {
+    public static String getScreenshot(String name)  {
         TakesScreenshot ts = (TakesScreenshot) Driver.getDriver();
         File source = ts.getScreenshotAs(OutputType.FILE);
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());

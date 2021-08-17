@@ -75,9 +75,9 @@ public class Driver {
                 case "safari":
                     driver = new SafariDriver();
                     break;
+
                 default:
                     System.out.println("Invalid browser");
-                    ;
                     break;
             }
 
