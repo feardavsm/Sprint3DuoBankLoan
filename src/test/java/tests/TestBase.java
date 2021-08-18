@@ -45,7 +45,7 @@ public class TestBase {
     public void setupMethod(@Optional String browser, Method method) {
 
         driver = Driver.getDriver(browser);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
         driver.get(ConfigReader.getProperty("url"));

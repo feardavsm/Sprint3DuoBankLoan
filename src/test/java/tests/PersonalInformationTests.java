@@ -18,7 +18,6 @@ public class PersonalInformationTests extends TestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void loginSetup() {
-
         LoginPage loginPage = new LoginPage();
         loginPage.login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
         loginPage.mortgageApplicationMenu.click();
