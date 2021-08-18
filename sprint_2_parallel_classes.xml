@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sprint 2 Parallel Test Suite">
+    <test verbose="2" preserve-order="true" parallel="classes" thread-count="4" name="Sprint 2 Parallel Classes">
+
+        <classes>
+            <class name="tests.LoginTests"></class>
+            <class name="tests.PersonalInformationTests"></class>
+            <class name="tests.PreApprovalDetailsTests"></class>
+            <class name="tests.SignUpTests"></class>
+        </classes>
+
+    </test>
+</suite>
