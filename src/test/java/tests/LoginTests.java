@@ -32,7 +32,7 @@ public class LoginTests extends TestBase {
 
     Faker fake = new Faker();
 
-    @Test()
+    @Test(groups = {"smoke"})
     public void loginWithInvalidUsername() {
         LoginPage loginPage = new LoginPage();
         logger.info("Entering the Invalid Username");
@@ -52,7 +52,7 @@ public class LoginTests extends TestBase {
         Assert.assertTrue(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/index.php"));
     }
 
-    @Test()
+    @Test(groups = {"smoke"})
     public void loginWithNoCredentials() {
         LoginPage loginPage = new LoginPage();
         logger.info("Clicking the Login Button");
@@ -65,7 +65,7 @@ public class LoginTests extends TestBase {
         Assert.assertTrue(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/index.php"));
     }
 
-    @Test()
+    @Test(groups = {"smoke"})
     public void loginWithInvalidPassword() {
         LoginPage loginPage = new LoginPage();
         logger.info("Entering the Username");

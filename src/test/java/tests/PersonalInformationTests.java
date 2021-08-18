@@ -73,7 +73,7 @@ public class PersonalInformationTests extends TestBase {
         boolean emailRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.email);
         Assert.assertTrue(emailRequired);
         boolean dateRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.dateOfBirth);
-        Assert.assertTrue(dateRequired, "Date of birth field is not mandotary.");
+        Assert.assertTrue(dateRequired, "Date of birth field is not mandatory.");
         boolean ssnRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.ssn);
         Assert.assertTrue(ssnRequired);
         boolean statusRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.martialStatus);

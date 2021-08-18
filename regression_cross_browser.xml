@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Suite CrossBrowser">
-    <test verbose="2" preserve-order="true" name="Regression Test Suite">
+<suite name="Regression Test Suite">
+    <test verbose="2" preserve-order="true" name="Regression Cross Browser Tests">
 
         <parameter name="browser" value="chrome"></parameter>
         <packages>
