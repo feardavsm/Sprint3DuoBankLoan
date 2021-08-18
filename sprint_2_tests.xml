@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sprint 2 Test Suite">
+    <test verbose="2" preserve-order="true" name="Sprint 2 Tests">
+
+        <packages>
+            <package name=".*"></package>
+        </packages>
+
+    </test>
+</suite>
