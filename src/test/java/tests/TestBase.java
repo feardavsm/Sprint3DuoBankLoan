@@ -34,7 +34,7 @@ public class TestBase {
         reporter.attachReporter(htmlReporter);
 
         // Configuration settings
-        reporter.setSystemInfo("Tester", "team_duo10");
+        reporter.setSystemInfo("QA Tester", "team_duo10");
         reporter.setSystemInfo("Environment", "Window 10");
         reporter.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
     }
