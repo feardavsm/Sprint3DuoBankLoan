@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.duotify</groupId>
-    <artifactId>duotify-automation-tests</artifactId>
+    <groupId>com.duobank</groupId>
+    <artifactId>duobank-automation-tests</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -88,6 +88,8 @@
                         <suiteXmlFiles>
                             <!--suppress UnresolvedMavenProperty -->
                             <suiteXmlFile>${xmlFile}</suiteXmlFile>
+                            <!--suppress UnresolvedMavenProperty -->
+                            <suiteXmlFile>${xmlFileFailed}</suiteXmlFile>
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>
