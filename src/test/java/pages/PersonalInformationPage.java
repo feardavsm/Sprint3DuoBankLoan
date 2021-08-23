@@ -46,4 +46,5 @@ public class PersonalInformationPage extends PageBase {
     public WebElement privacyPolicyCheckBox;
 
 
+
 }
