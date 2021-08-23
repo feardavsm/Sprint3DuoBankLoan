@@ -55,24 +55,24 @@ public class TestBase {
     }
 
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDownMethod(ITestResult result){
-        if(result.getStatus()== ITestResult.SUCCESS){
-            logger.pass("PASSED: "  + result.getName());
-        }else if(result.getStatus()==ITestResult.SKIP){
-            logger.skip("SKIPPED: "  +result.getName());
-        }else if(result.getStatus()==ITestResult.FAILURE){
-            logger.fail("FAILED: "  +result.getName());
-            logger.fail(result.getThrowable());
-            String path = SeleniumUtils.getScreenshot("failureScreenshot");
-            logger.addScreenCaptureFromPath(path);
-        }
-        Driver.quitDriver();
-    }
-
-    @AfterSuite (alwaysRun = true)
-    public void tearDownReport(){
-        reporter.flush();
-    }
+//    @AfterMethod(alwaysRun = true)
+//    public void tearDownMethod(ITestResult result){
+//        if(result.getStatus()== ITestResult.SUCCESS){
+//            logger.pass("PASSED: "  + result.getName());
+//        }else if(result.getStatus()==ITestResult.SKIP){
+//            logger.skip("SKIPPED: "  +result.getName());
+//        }else if(result.getStatus()==ITestResult.FAILURE){
+//            logger.fail("FAILED: "  +result.getName());
+//            logger.fail(result.getThrowable());
+//            String path = SeleniumUtils.getScreenshot("failureScreenshot");
+//            logger.addScreenCaptureFromPath(path);
+//        }
+//        Driver.quitDriver();
+//    }
+//
+//    @AfterSuite (alwaysRun = true)
+//    public void tearDownReport(){
+//        reporter.flush();
+//    }
 
 }
