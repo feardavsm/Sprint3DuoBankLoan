@@ -1,6 +1,8 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -9,6 +11,8 @@ import pages.LoginPage;
 import pages.SummaryPage;
 import utilities.ConfigReader;
 import utilities.Driver;
+
+import java.util.List;
 
 
 public class SummaryPageTests extends TestBase {
@@ -44,9 +48,24 @@ public class SummaryPageTests extends TestBase {
        // s.saveButton.click();
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
+
+        SummaryPage s = new SummaryPage();
+        List<WebElement> edits = Driver.getDriver().findElements(By.xpath("//a[contains(text(),'Edit')]"));
+        int count = 0;
+        for (WebElement e: edits) {
+            System.out.println(e.getText());
+            count++;
+
+        }
+        Assert.assertEquals(count, 5);// there are 5 edit buttons
+
     }
 
+@Test
+    public void t2(){
+    Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
 
+}
 
 
 
