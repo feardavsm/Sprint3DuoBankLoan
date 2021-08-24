@@ -16,4 +16,9 @@ public class SummaryPage {
 
     @FindBy (id = "EmploymentIncomeEdit")
     public WebElement currentMonthlyHousingExpenses;
+
+
+    @FindBy (xpath = "//a[contains(text(),'Save')]")
+    public WebElement saveButton;
+
 }
