@@ -1,6 +1,7 @@
 package tests;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -17,7 +18,7 @@ public class PreApprovalDetailsTests extends TestBase {
     public void preApprovalTestsSetup() {
         LoginPage loginPage = new LoginPage();
         do {
-            loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
+            loginPage.login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
         }
         while (!driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/dashboard.php"));
 
@@ -66,9 +67,6 @@ public class PreApprovalDetailsTests extends TestBase {
 
         preApprovalDetaisPage.next.click();
 
-//        Assert.assertTrue(driver.getCurrentUrl().equals(""));  How to check if the next button succesfully passed?
-
-
     }
 
 
@@ -81,6 +79,8 @@ public class PreApprovalDetailsTests extends TestBase {
         Assert.assertEquals(preApprovalDetaisPage.estimatedPriceRequired.getText(), "THIS FIELD IS REQUIRED.");
         Assert.assertEquals(preApprovalDetaisPage.downPaymentRequired.getText(), "THIS FIELD IS REQUIRED.");
         Assert.assertEquals(preApprovalDetaisPage.downPaymentPercentRequired.getText(), "THIS FIELD IS REQUIRED.");
+
+        Assert.assertTrue(driver.findElement(By.xpath("//a[@id='steps-uid-0-t-0']//span[.='current step: ']")).isEnabled());
 
 
     }
