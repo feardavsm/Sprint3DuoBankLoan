@@ -11,7 +11,7 @@ public class ExpensesPage extends PageBase {
     @FindBy(xpath = "//*[@for='expense2']")
     public WebElement ownChekBox;
 
-    @FindBy(xpath = "//input[@id='monthlyrentalpayment']")
+    @FindBy(xpath="//input[@name='monthly_rental_payment']")
     public WebElement monthlyRentalPayment;
 
     @FindBy(xpath = "//input[@id='firtmortagagetotalpayment']")
@@ -19,5 +19,8 @@ public class ExpensesPage extends PageBase {
 
     @FindBy(xpath = "//a[@href='#next']")
     public WebElement nextButton;
+
+
+
 
 }

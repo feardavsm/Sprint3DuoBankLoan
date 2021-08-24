@@ -14,5 +14,8 @@ public class ApplicationListPage  extends  PageBase{
     @FindBy (xpath = "//input[@type='search']")
     public WebElement searchBar;
 
+    @FindBy ( id = "DataTables_Table_0_next")
+    public WebElement nextButton;
+
 
 }
