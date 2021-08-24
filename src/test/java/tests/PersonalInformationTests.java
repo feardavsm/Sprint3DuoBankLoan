@@ -208,7 +208,7 @@ public class PersonalInformationTests extends TestBase {
         Assert.assertTrue(driver.getPageSource().contains("Please enter a valid email address."));
         personalInformationPage.nextButton.click();
         logger.info("Assertion of next page");
-        Assert.assertTrue(driver.findElement(By.xpath("//a[@id='steps-uid-0-t-2']//span[.='current step: ']")).isEnabled());
+        Assert.assertTrue(driver.findElement(By.xpath("//a[@id='steps-uid-0-t-1']//span[.='current step: ']")).isEnabled());
     }
 
 
