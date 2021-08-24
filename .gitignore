@@ -3,7 +3,6 @@
 *.iml
 /.idea/
 /out/
-/target/
 /bin/
 /test-output/
 #to remove unwanted folders or files retroactively  -> git rm -r --cached <folder or file name>
