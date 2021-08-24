@@ -56,6 +56,7 @@ public class SignUpTests extends TestBase {
     public void signUpWithoutData() {
         SignUpPage signUpPage = new SignUpPage();
 
+        logger.info("Click register button without entering required information");
         signUpPage.registerButton.click();
 
         List<WebElement> signUpTable = new ArrayList<>();
