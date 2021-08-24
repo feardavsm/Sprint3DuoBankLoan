@@ -253,6 +253,4 @@ public class PersonalInformationTests extends TestBase {
         Assert.assertTrue(driver.findElement(By.xpath("//a[@id='steps-uid-0-t-1']//span[.='current step: ']")).isEnabled());
     }
 
-
-
 }
