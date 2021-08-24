@@ -72,6 +72,7 @@ public class SignUpTests extends TestBase {
 
             WebElement inputElement = signUpTable.get(i);
             isRequired = (Boolean) js.executeScript("return arguments[0].required;", inputElement);
+            logger.info("Assertion of required fields");
             Assert.assertTrue(isRequired);
         }
 
@@ -82,8 +83,11 @@ public class SignUpTests extends TestBase {
     public void signUpWithWrongEmailInput() {
         SignUpPage signUpPage = new SignUpPage();
         Faker fake = new Faker();
+        logger.info("Entering first name");
         signUpPage.firstName.sendKeys(fake.name().firstName());
+        logger.info("Entering last name");
         signUpPage.lastName.sendKeys(fake.name().lastName());
+        logger.info("Entering the email in wrong format");
         signUpPage.email.sendKeys(fake.name().firstName()); //name instead of email.
 
         signUpPage.registerButton.click();
