@@ -27,7 +27,7 @@ public class LoginTests extends TestBase {
         logger.info("Clicking the Login Button");
         loginPage.loginButton.click();
         logger.info("Verifying the URL is as expected");
-        Assert.assertTrue(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/dashboard.php"));
+       // Assert.assertTrue(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/dashboard.php"));
     }
 
     Faker fake = new Faker();

@@ -5,18 +5,24 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.EconsentPage;
+import pages.LoginPage;
 import utilities.ConfigReader;
 
 public class EcosentTests extends TestBase{
-    @BeforeMethod
-    public void beforeOpeningEcosentTest(){
-        CreditReportTest creditReportTest=new CreditReportTest();
-        creditReportTest.beforePagesUpload();
-        creditReportTest.positiveAnswerforCreditReport();
-        Assert.assertTrue(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/mortagage.php"));
+    @BeforeMethod(alwaysRun = true)
+    public void login() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
+        loginPage.mortgageApplicationMenu.click();
+
+        PreApprovalDetailsTests preApproval = new PreApprovalDetailsTests();
+        preApproval.positiveTestPreApprovalDetails();
     }
     @Test
+
     public void EcosentWithValidCredentials(){
+        CreditReportTest creditReportTest=new CreditReportTest();
+        creditReportTest.positiveAnswerforCreditReport();
         EconsentPage econsentPage=new EconsentPage();
         econsentPage.firsName.sendKeys(ConfigReader.getProperty("firstname"));
         econsentPage.lastName.sendKeys(ConfigReader.getProperty("lastname"));
@@ -27,6 +33,8 @@ public class EcosentTests extends TestBase{
 
     @Test
     public void EcosentWithWrongValidCredentials(){
+        CreditReportTest creditReportTest=new CreditReportTest();
+        creditReportTest.positiveAnswerforCreditReport();
         Faker fake=new Faker();
 
         EconsentPage econsentPage=new EconsentPage();
@@ -38,8 +46,10 @@ public class EcosentTests extends TestBase{
         Assert.assertFalse(!driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/mortagage.php"));
 
     }
-    @Test(alwaysRun = true)
+    @Test()
     public void EcosentWithNoCredetials(){
+        CreditReportTest creditReportTest=new CreditReportTest();
+        creditReportTest.positiveAnswerforCreditReport();
         EconsentPage econsentPage=new EconsentPage();
         econsentPage.firsName.sendKeys(" ");
         econsentPage.lastName.sendKeys("   ");
