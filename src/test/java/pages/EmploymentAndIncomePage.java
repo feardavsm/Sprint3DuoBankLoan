@@ -38,5 +38,6 @@ public class EmploymentAndIncomePage extends PageBase{
     @FindBy(id = "monthlydividents")
     public WebElement monthlyDivident;
 
-
+    @FindBy(xpath = "//a[@href='#next']")
+    public WebElement nextButton;
 }

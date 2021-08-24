@@ -5,11 +5,19 @@ import org.openqa.selenium.support.FindBy;
 
 public class ExpensesPage extends PageBase {
 
-    @FindBy(xpath = "//*[@id='expense1']")
-    public WebElement houseExpenses;
+    @FindBy(xpath = "//*[@for='expense1']")
+    public WebElement rentChekBox;
 
-    @FindBy(xpath = "//*[@id='monthlyrentalpayment']")
+    @FindBy(xpath = "//*[@for='expense2']")
+    public WebElement ownChekBox;
+
+    @FindBy(xpath = "//input[@id='monthlyrentalpayment']")
     public WebElement monthlyRentalPayment;
 
+    @FindBy(xpath = "//input[@id='firtmortagagetotalpayment']")
+    public WebElement firstMortgageTotalPayment;
+
+    @FindBy(xpath = "//a[@href='#next']")
+    public WebElement nextButton;
 
 }

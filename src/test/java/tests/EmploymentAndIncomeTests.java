@@ -1,6 +1,9 @@
 package tests;
 
+import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -17,45 +20,47 @@ public class EmploymentAndIncomeTests extends TestBase{
     @BeforeMethod(alwaysRun = true)
     public void loginSetup() {
         LoginPage loginPage = new LoginPage();
-        loginPage.login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
+        do {
+            loginPage.login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
+        }
+        while (!driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/dashboard.php"));
+
         loginPage.mortgageApplicationMenu.click();
 
         PreApprovalDetailsTests preApproval = new PreApprovalDetailsTests();
         preApproval.positiveTestPreApprovalDetails();
+        PersonalInformationTests personalInformationTests = new PersonalInformationTests();
+        personalInformationTests.verifyWithValidCredentials();
+        ExpensesTests expensesTests = new ExpensesTests();
+        expensesTests.verifyWithRentCheckBox();
     }
 
-    @DataProvider(name = "fromCsvFile")
-    public Object[][] getDataFromCSV() throws IOException {
-        return CSVReader.readData("validTestDataForPersonalInfoPage.csv");
-    }
-
-    @Test(dataProvider = "fromCsvFile")
-    public void verifyWithValidDataEmploymentAndIncome(String firstName, String middleName, String lastName,
-                                            String email, String dateOfBirth, String ssn,
-                                            String cellPhone, String homePhone) {
-
-        ExpensesTests expenses = new ExpensesTests();
-        expenses.verifyWithValidDataExpenses(firstName, middleName, lastName,
-                email, dateOfBirth, ssn, cellPhone, homePhone);
-
+    @Test
+    public void verifyWithValidDataEmploymentAndIncome() {
         EmploymentAndIncomePage employmentAndIncomePage = new EmploymentAndIncomePage();
-        PersonalInformationPage personalInformationPage = new PersonalInformationPage();
+        Faker faker = new Faker();
         if (!employmentAndIncomePage.currentJob.isSelected()) {
             employmentAndIncomePage.currentJob.click();
         }
-        employmentAndIncomePage.employName.sendKeys(firstName);
-        employmentAndIncomePage.position.sendKeys("Automation Engineer");
-        employmentAndIncomePage.city.sendKeys("United State");
+        employmentAndIncomePage.employName.sendKeys(faker.name().firstName());
+        employmentAndIncomePage.position.sendKeys(faker.job().position());
+        employmentAndIncomePage.city.sendKeys(faker.address().city());
         Select selectBoxStatus = new Select(employmentAndIncomePage.state);
         selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
         employmentAndIncomePage.startDate.sendKeys("12/08/1980");
-        employmentAndIncomePage.monthlyGrossIncome.sendKeys("10000");
-        employmentAndIncomePage.monthlyOvertime.sendKeys("5000");
-        employmentAndIncomePage.monthlyBonus.sendKeys("3000");
-        employmentAndIncomePage.monthlyCommission.sendKeys("2000");
-        employmentAndIncomePage.monthlyDivident.sendKeys("200");
+        employmentAndIncomePage.monthlyGrossIncome.sendKeys(faker.number().digits(5));
+        employmentAndIncomePage.monthlyOvertime.sendKeys(faker.number().digits(4));
+        employmentAndIncomePage.monthlyBonus.sendKeys(faker.number().digits(4));
+        employmentAndIncomePage.monthlyCommission.sendKeys(faker.number().digits(4));
+        employmentAndIncomePage.monthlyDivident.sendKeys(faker.number().digits(3));
+        employmentAndIncomePage.nextButton.click();
+    }
 
-        personalInformationPage.nextButton.click();
+    @Test
+    public void verifyWithNoCredentials() {
+        EmploymentAndIncomePage employmentAndIncomePage = new EmploymentAndIncomePage();
+        employmentAndIncomePage.nextButton.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//a[@id='steps-uid-0-t-4']//span[.='current step: ']")).isEnabled());
     }
 
 }

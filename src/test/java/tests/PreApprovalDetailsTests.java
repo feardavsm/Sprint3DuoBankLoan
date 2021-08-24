@@ -16,7 +16,11 @@ public class PreApprovalDetailsTests extends TestBase {
     @BeforeMethod(alwaysRun = true)
     public void preApprovalTestsSetup() {
         LoginPage loginPage = new LoginPage();
-        loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
+        do {
+            loginPage.login(ConfigReader.getProperty("username"), ConfigReader.getProperty("password"));
+        }
+        while (!driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/dashboard.php"));
+
         loginPage.mortgageApplicationMenu.click();
 
     }

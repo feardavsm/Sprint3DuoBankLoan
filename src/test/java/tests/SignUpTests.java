@@ -24,23 +24,14 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUpTests extends TestBase {
 
-    @BeforeMethod(alwaysRun = true)
-    @Parameters("browser")
-    public void setupMethod(@Optional String browser, Method method) {
-
-        driver = Driver.getDriver(browser);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(ConfigReader.getProperty("url"));
-
+    @BeforeMethod()
+    public void setupMethod() {
         new LoginPage().signUpLink.click();
-
     }
 
 
     @Test(groups = {"smoke"})
     public void signUpWithFaker() {
-
         SignUpPage signUpPage = new SignUpPage();
         Faker fake = new Faker();
         signUpPage.firstName.sendKeys(fake.name().firstName());
@@ -58,7 +49,6 @@ public class SignUpTests extends TestBase {
 
     @Test(groups = {"smoke"})
     public void signUpWithoutData() {
-
         SignUpPage signUpPage = new SignUpPage();
 
         signUpPage.registerButton.click();
@@ -84,7 +74,6 @@ public class SignUpTests extends TestBase {
 
     @Test(groups = {"smoke"})
     public void signUpWithWrongEmailInput() {
-
         SignUpPage signUpPage = new SignUpPage();
         Faker fake = new Faker();
         signUpPage.firstName.sendKeys(fake.name().firstName());

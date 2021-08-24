@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
         public WebElement yesCheckBox;
         @FindBy(xpath="//label[@for='creditreport2']")
         public WebElement noCheckBox;
-        @FindBy(xpath="(//a[@class='btn btn-light-primary'])[2]")
+        @FindBy(xpath = "//a[@href='#next']")
         public WebElement nextButton;
     }
 

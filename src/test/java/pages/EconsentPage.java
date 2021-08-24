@@ -11,10 +11,10 @@ public class EconsentPage extends PageBase {
     public WebElement lastName;
     @FindBy(id="eConsentdeclarerEmail")
     public WebElement email;
-    @FindBy(xpath="(//label[@class='custom-control-label'])[1]")
-    public WebElement acceptButton;
-    @FindBy(id="dontagree")
+    @FindBy(xpath="//div[@class='custom-control custom-radio'][input[@id='agree']]")
+    public WebElement agreeButton;
+    @FindBy(xpath = "//div[@class='custom-control custom-radio'][input[@id='dontagree']]")
     public WebElement dontAgreeButton;
-    @FindBy(xpath="(//a[@class='btn btn-light-primary'])[2]")
+    @FindBy(xpath = "//a[@href='#next']")
     public WebElement nextButton;
 }
