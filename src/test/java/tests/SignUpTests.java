@@ -8,19 +8,19 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.SignUpPage;
+import utilities.CSVReader;
 import utilities.ConfigReader;
 import utilities.Driver;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
 
 public class SignUpTests extends TestBase {
 
@@ -29,22 +29,27 @@ public class SignUpTests extends TestBase {
         new LoginPage().signUpLink.click();
     }
 
+    @DataProvider(name = "fromCsvFile1")
+    public Object[][] getDataFromCSV3() throws IOException {
+        return CSVReader.readData("mockDataForSignUpPage.csv");
+    }
 
-    @Test(groups = {"smoke"})
-    public void signUpWithFaker() {
+
+    @Test(dataProvider = "fromCsvFile1", groups = {"smoke"})
+    public void signUpWithMockData(String firstName, String lastName, String email, String password) {
         SignUpPage signUpPage = new SignUpPage();
-        Faker fake = new Faker();
-        signUpPage.firstName.sendKeys(fake.name().firstName());
-        signUpPage.lastName.sendKeys(fake.name().lastName());
-        String email = fake.internet().emailAddress();
+        logger.info("Entering first name");
+        signUpPage.firstName.sendKeys(firstName);
+        logger.info("Entering last name");
+        signUpPage.lastName.sendKeys(lastName);
+        logger.info("Entering email name");
         signUpPage.email.sendKeys(email);
-        String password = fake.internet().password();
+        logger.info("Entering password name");
         signUpPage.password.sendKeys(password);
-
+        logger.info("Clicking register button");
         signUpPage.registerButton.click();
-
+        logger.info("Assertion register button");
         Assert.assertTrue(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/register.php"));
-
     }
 
     @Test(groups = {"smoke"})
