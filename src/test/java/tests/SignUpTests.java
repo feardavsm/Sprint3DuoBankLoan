@@ -58,10 +58,10 @@ public class SignUpTests extends TestBase {
 
         logger.info("Click register button without entering required information");
         signUpPage.registerButton.click();
-
         List<WebElement> signUpTable = new ArrayList<>();
         signUpTable.add(signUpPage.firstName);
         signUpTable.add(signUpPage.lastName);
+        logger.info("Email");
         signUpTable.add(signUpPage.email);
         signUpTable.add(signUpPage.password);
 
