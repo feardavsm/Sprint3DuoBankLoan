@@ -1,12 +1,10 @@
-package tests;
+package uitests;
 
-import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.ExpensesPage;
 import pages.LoginPage;
 import pages.SummaryPage;
 import utilities.ConfigReader;

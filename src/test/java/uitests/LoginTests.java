@@ -1,4 +1,4 @@
-package tests;
+package uitests;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.JavascriptExecutor;
@@ -6,7 +6,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utilities.ConfigReader;
-import utilities.SeleniumUtils;
 
 public class LoginTests extends TestBase {
 

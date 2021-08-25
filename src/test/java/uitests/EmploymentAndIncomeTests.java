@@ -1,19 +1,14 @@
-package tests;
+package uitests;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.EmploymentAndIncomePage;
 import pages.LoginPage;
-import pages.PersonalInformationPage;
-import utilities.CSVReader;
 import utilities.ConfigReader;
-
-import java.io.IOException;
 
 public class EmploymentAndIncomeTests extends TestBase{
 

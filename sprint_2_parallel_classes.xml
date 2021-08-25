@@ -5,14 +5,14 @@
 
         <classes>
 
-            <class name="tests.CreditReportTest"></class>
-            <class name="tests.EconsentTests"></class>
-            <class name="tests.EmploymentAndIncomeTests"></class>
-            <class name="tests.ExpensesTests"></class>
-            <class name="tests.LoginTests"></class>
-            <class name="tests.PersonalInformationTests"></class>
-            <class name="tests.PreApprovalDetailsTests"></class>
-            <class name="tests.SignUpTests"></class>
+            <class name="uitests.CreditReportTest"></class>
+            <class name="uitests.EconsentTests"></class>
+            <class name="uitests.EmploymentAndIncomeTests"></class>
+            <class name="uitests.ExpensesTests"></class>
+            <class name="uitests.LoginTests"></class>
+            <class name="uitests.PersonalInformationTests"></class>
+            <class name="uitests.PreApprovalDetailsTests"></class>
+            <class name="uitests.SignUpTests"></class>
 
         </classes>
 

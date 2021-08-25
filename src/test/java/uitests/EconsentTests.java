@@ -1,4 +1,4 @@
-package tests;
+package uitests;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;

@@ -1,13 +1,13 @@
-package tests;
+package uitests;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import utilities.ConfigReader;
+import utilities.DataBaseUtility;
 import utilities.Driver;
 import utilities.SeleniumUtils;
 
@@ -29,13 +29,12 @@ public class TestBase {
         reporter = new ExtentReports();
         String path = System.getProperty("user.dir") + "/test-output/extentReports/index.html";
         htmlReporter = new ExtentSparkReporter(path);
-        htmlReporter.config().setReportName("DUOBANK AUTOMATION TESTS");
+        htmlReporter.config().setReportName("DUOBANK-LOAN-DATABASE-AUTOMATION TESTS");
 
         reporter.attachReporter(htmlReporter);
 
-        // Configuration settings
-        reporter.setSystemInfo("QA Tester", "team_duo10");
-        reporter.setSystemInfo("Environment", "Window 10");
+        reporter.setSystemInfo("DUO10 Tester", "DUO10");
+        reporter.setSystemInfo("Environment", "TESTER_ENV");
         reporter.setSystemInfo("Browser", ConfigReader.getProperty("browser"));
     }
 
@@ -51,6 +50,7 @@ public class TestBase {
         driver.get(ConfigReader.getProperty("url"));
 
         logger = reporter.createTest("TEST CASE: " + method.getName());
+        DataBaseUtility.createConnection();
     }
 
 
@@ -67,6 +67,7 @@ public class TestBase {
             logger.addScreenCaptureFromPath(path);
         }
         Driver.quitDriver();
+        DataBaseUtility.close();
     }
 
     @AfterSuite(alwaysRun = true)

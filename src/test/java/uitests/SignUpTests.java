@@ -1,26 +1,17 @@
-package tests;
+package uitests;
 
 import com.github.javafaker.Faker;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.SignUpPage;
 import utilities.CSVReader;
-import utilities.ConfigReader;
-import utilities.Driver;
 
 import java.io.IOException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
 
 public class SignUpTests extends TestBase {
 
@@ -58,10 +49,10 @@ public class SignUpTests extends TestBase {
 
         logger.info("Click register button without entering required information");
         signUpPage.registerButton.click();
-
         List<WebElement> signUpTable = new ArrayList<>();
         signUpTable.add(signUpPage.firstName);
         signUpTable.add(signUpPage.lastName);
+        logger.info("Email");
         signUpTable.add(signUpPage.email);
         signUpTable.add(signUpPage.password);
 
