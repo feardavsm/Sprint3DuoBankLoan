@@ -53,21 +53,5 @@ public class LoginTest extends TestBase {
 
     }
 
-    @Test
-    public void updateEmailDb() throws SQLException {
-
-        // Send update email query
-
-        String expectedEmail = "feardavsm@gmail.com";
-        String expectedFirstName = "Feardavs";
-        String expectedLastName = "Muhammad";
-
-        String query = "update loan.tbl_user set email='" + expectedEmail + "', first_name='" + expectedFirstName + "', last_name='" + expectedLastName;
-        System.out.println(query);
-        DataBaseUtility.updateQuery(query);
-
-
-     }
-
 
     }
