@@ -31,7 +31,7 @@ public class PersonalInformationPage extends PageBase {
     public WebElement ssn;
 
     @FindBy(xpath = "//select[@id='b_marital']")
-    public WebElement martialStatus;
+    public WebElement maritalStatus;
 
     @FindBy(xpath = "//input[@id='b_cell']")
     public WebElement cellPhone;
