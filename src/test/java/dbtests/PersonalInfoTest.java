@@ -26,7 +26,7 @@ public class PersonalInfoTest extends TestBase {
         // Login In To Web Application
         LoginPage loginPage = new LoginPage();
         logger.info("Logging in");
-        loginPage.login(ConfigReader.getProperty("username1"), ConfigReader.getProperty("password1"));
+        loginPage.login(ConfigReader.getProperty("username2"), ConfigReader.getProperty("password2"));
         Assert.assertFalse(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/index.php"));
 
         // Processing PreApproval Credentials InOrder To Proceed With The Personal Information Testing
@@ -68,7 +68,7 @@ public class PersonalInfoTest extends TestBase {
         String expectedSsn = faker.number().digits(9);
         pip.ssn.sendKeys(expectedSsn);
         logger.info("Selecting marital status");
-        Select maritalStatus = new Select(pip.martialStatus);
+        Select maritalStatus = new Select(pip.maritalStatus);
         maritalStatus.selectByIndex(1);
         logger.info("Entering cell phone");
         String expectedCell = faker.phoneNumber().cellPhone();
