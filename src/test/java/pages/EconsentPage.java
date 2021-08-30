@@ -17,4 +17,5 @@ public class EconsentPage extends PageBase {
     public WebElement dontAgreeButton;
     @FindBy(xpath = "//a[@href='#next']")
     public WebElement nextButton;
+    public WebElement suffixDropDownList;
 }
