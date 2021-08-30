@@ -66,12 +66,12 @@ public class TestBase {
             String path = SeleniumUtils.getScreenshot("failureScreenshot");
             logger.addScreenCaptureFromPath(path);
         }
-        Driver.quitDriver();
-        DataBaseUtility.close();
+      //  Driver.quitDriver();
+     //   DataBaseUtility.close();
     }
 
-    @AfterSuite(alwaysRun = true)
-    public void tearDownReport() {
-        reporter.flush();
-    }
+  //  @AfterSuite(alwaysRun = true)
+  //  public void tearDownReport() {
+  //      reporter.flush();
+  //  }
 }
