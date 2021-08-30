@@ -1,6 +1,7 @@
 package dbtests;
 
 import com.github.javafaker.Faker;
+import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -49,19 +50,19 @@ public class PersonalInfoTest extends TestBase {
         pip.lastName.sendKeys(expectedLastName);
         logger.info("Selecting suffix checkbox");
         Select selectBoxSuffix = new Select(pip.suffixDropDownList);
-        selectBoxSuffix.selectByIndex((int) (1 + (Math.random() * 5)));
+        selectBoxSuffix.selectByIndex(1);
         logger.info("Entering email address");
         String expectedEmail = faker.internet().emailAddress();
         pip.email.sendKeys(expectedEmail);
         logger.info("Entering date of birth");
-        pip.dateOfBirth.sendKeys("01012000");
+        pip.dateOfBirth.sendKeys("01271990");
         logger.info("Entering ssn");
         String expectedSsn = faker.number().digits(9);
         pip.ssn.sendKeys(expectedSsn);
         //pip.ssn.sendKeys(faker.number().digits(9));
         logger.info("Selecting marital status");
         Select selectBoxStatus = new Select(pip.maritalStatus);
-        selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
+        selectBoxStatus.selectByIndex(1);
         logger.info("Entering cell phone");
         String expectedCell = faker.phoneNumber().cellPhone();
         pip.cellPhone.sendKeys(expectedCell);
@@ -76,6 +77,7 @@ public class PersonalInfoTest extends TestBase {
         }
         logger.info("Clicking next button");
         pip.nextButton.click();
+        Assert.assertTrue(driver.findElement(By.xpath("//a[@id='steps-uid-0-t-2']//span[.='current step: ']")).isEnabled());
 
 
         // Checking connection to database is successful
@@ -84,15 +86,13 @@ public class PersonalInfoTest extends TestBase {
         System.out.println("Connection successful");
 
         // Inserting newly created credentials into the MySQL Database
-        String query = "INSERT INTO loan.tbl_mortagage ( b_firstName, b_middleName, b_lastName, " +
-                "b_suffix, b_email, d_dob, b_ssn, b_marital, b_cell, b_home) " +
-                "values " +
+        String query = "INSERT INTO loan.tbl_mortagage (b_firstName,b_middleName,b_lastName," +
+                "b_suffix,b_email,d_dob,b_ssn,b_marital,b_cell,b_home)" +
+                "values" +
                 "('"+expectedFirstName+"', '"+expectedMiddleName+"','"+expectedLastName+"' " +
-                "'"+selectBoxSuffix+"','"+expectedEmail+"', '"+expectedSsn+"', '"+selectBoxStatus+"', '"+expectedCell+"','"+expectedHome+"')";
+                "'"+selectBoxSuffix+"','"+expectedEmail+"', '"+ pip.dateOfBirth+"', '"+expectedSsn+"', '"+ pip.maritalStatus+"', '"+expectedCell+"','"+expectedHome+"')";
 
-        // Verifying the user credentials in the UI
-        DataBaseUtility.updateQuery(query);
-        logger.info("Verify the user creation on the UI");
+
 
         // Printing the newly created credentials that were used to sign up and login and
       System.out.println("First Name: " + expectedFirstName + " | Middle Name: " + expectedMiddleName +
