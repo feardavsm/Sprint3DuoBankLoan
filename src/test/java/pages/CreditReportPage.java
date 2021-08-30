@@ -12,5 +12,7 @@ import org.openqa.selenium.support.FindBy;
         public WebElement noCheckBox;
         @FindBy(xpath = "//a[@href='#next']")
         public WebElement nextButton;
+
+
     }
 

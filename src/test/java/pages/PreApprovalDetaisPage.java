@@ -2,8 +2,10 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.w3c.dom.html.HTMLInputElement;
 
 public class PreApprovalDetaisPage extends PageBase {
+
 
     @FindBy(xpath = "//*[@id='realtor1']")
     public WebElement checkBoxrealtor1;

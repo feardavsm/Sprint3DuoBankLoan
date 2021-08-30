@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.w3c.dom.html.HTMLInputElement;
 
 public class SummaryPage {
 
@@ -16,12 +17,14 @@ public class SummaryPage {
     @FindBy(id = "EmploymentIncomeEdit")
     public WebElement currentMonthlyHousingExpenses;
 
-
+    //*[@id='steps-uid-0']/div[3]/ul/li[3]/a
+    // #steps-uid-0 > div.actions.clearfix > ul > li:nth-child(3) > a
     @FindBy(xpath = "//a[contains(text(),'Save')]")
     public WebElement saveButton;
 
 
     @FindBy(xpath = "//a[contains(text(),'Edit')]")
     public WebElement allEditButtons;
+
 
 }

@@ -42,8 +42,8 @@ public class SummaryPageTests extends TestBase {
 //
     @Test
     public void t1() {
-     //   SummaryPage s = new SummaryPage();
-       // s.saveButton.click();
+     //SummaryPage s = new SummaryPage();
+     //  s.saveButton.click();
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
 
