@@ -12,6 +12,7 @@ import utilities.ConfigReader;
 
 
 public class ExpensesTests extends TestBase {
+    static  String num;
 
 
     @BeforeMethod(alwaysRun = true)
@@ -37,7 +38,8 @@ public class ExpensesTests extends TestBase {
         if (!expensesPage.rentChekBox.isSelected()) {
             expensesPage.rentChekBox.click();
         }
-        expensesPage.monthlyRentalPayment.sendKeys(faker.number().digits(4));
+        num = faker.number().digits(4);
+        expensesPage.monthlyRentalPayment.sendKeys(num);
         expensesPage.nextButton.click();
     }
 

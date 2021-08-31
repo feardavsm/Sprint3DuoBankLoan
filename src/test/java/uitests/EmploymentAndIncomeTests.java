@@ -12,6 +12,9 @@ import utilities.ConfigReader;
 
 public class EmploymentAndIncomeTests extends TestBase{
 
+
+    static String grossMonthly;
+
     @BeforeMethod(alwaysRun = true)
     public void loginSetup() {
         LoginPage loginPage = new LoginPage();
@@ -37,13 +40,16 @@ public class EmploymentAndIncomeTests extends TestBase{
         if (!employmentAndIncomePage.currentJob.isSelected()) {
             employmentAndIncomePage.currentJob.click();
         }
+
+
         employmentAndIncomePage.employName.sendKeys(faker.name().firstName());
         employmentAndIncomePage.position.sendKeys(faker.job().position());
         employmentAndIncomePage.city.sendKeys(faker.address().city());
         Select selectBoxStatus = new Select(employmentAndIncomePage.state);
         selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
         employmentAndIncomePage.startDate.sendKeys("12/08/1980");
-        employmentAndIncomePage.monthlyGrossIncome.sendKeys(faker.number().digits(5));
+        grossMonthly= faker.number().digits(5);
+        employmentAndIncomePage.monthlyGrossIncome.sendKeys(grossMonthly);
         employmentAndIncomePage.monthlyOvertime.sendKeys(faker.number().digits(4));
         employmentAndIncomePage.monthlyBonus.sendKeys(faker.number().digits(4));
         employmentAndIncomePage.monthlyCommission.sendKeys(faker.number().digits(4));

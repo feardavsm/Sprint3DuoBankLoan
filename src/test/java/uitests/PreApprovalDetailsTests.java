@@ -12,6 +12,8 @@ import utilities.ConfigReader;
 public class PreApprovalDetailsTests extends TestBase {
 
 
+
+
     @BeforeMethod(alwaysRun = true)
     public void preApprovalTestsSetup() {
         LoginPage loginPage = new LoginPage();

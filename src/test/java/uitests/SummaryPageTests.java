@@ -1,17 +1,23 @@
 package uitests;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.LoginPage;
-import pages.SummaryPage;
+import pages.*;
 import utilities.ConfigReader;
+import utilities.DataBaseUtility;
 import utilities.Driver;
 
+import java.sql.DriverManager;
+import java.sql.SQLOutput;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 
 public class SummaryPageTests extends TestBase {
@@ -40,7 +46,7 @@ public class SummaryPageTests extends TestBase {
         econsentTests.EconsentWithValidCredentials();
         Thread.sleep(3000);
     }
-//
+
 
     @Test
     public void summaryPositiveTest() {
@@ -51,8 +57,6 @@ public class SummaryPageTests extends TestBase {
 
     @Test
     public void t1() {
-     //   SummaryPage s = new SummaryPage();
-       // s.saveButton.click();
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
 
@@ -65,6 +69,11 @@ public class SummaryPageTests extends TestBase {
 
         }
         Assert.assertEquals(count, 5);// there are 5 edit buttons
+        if (count == 5) {
+            System.out.println("There are 5 edit buttons");
+        }else{
+            System.out.println("Something went wrong, There should be 5 buttons");
+        }
 
     }
 
@@ -73,13 +82,87 @@ public class SummaryPageTests extends TestBase {
     Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
 
 }
+@Test
+    public void t3() throws InterruptedException {
+
+        Driver.getDriver().findElement(By.id("ExpenseEdit")).click();
+        Thread.sleep(3000);
+
+        ExpensesPage e = new ExpensesPage();
+        ExpensesTests et = new ExpensesTests();
+    System.out.println("monthly rental payment amount: $"+ et.num);
+
+    Driver.getDriver().findElement(By.id("steps-uid-0-t-6")).click();
+    Driver.getDriver().findElement(By.xpath("//a[@href=\"#finish\"]")).click();
+
+    List<List<Object>> monthlyRentalPayment = DataBaseUtility.getQueryResultAsListOfLists("select monthly_rental_payment from tbl_mortagage where monthly_rental_payment ="+et.num+"");
+    List<List<Object>> checkMonthlyRentalPayment = DataBaseUtility.getQueryResultAsListOfLists("select monthly_rental_payment from tbl_mortagage ORDER BY id DESC LIMIT 1;");
+
+    System.out.println("expected monthly rental payment amount: $" + monthlyRentalPayment.get(0).get(0));
+
+    Assert.assertEquals(checkMonthlyRentalPayment, monthlyRentalPayment);
+}
+
+@Test
+    public void t4() throws InterruptedException {
+    Driver.getDriver().findElement(By.id("EmploymentIncomeEdit")).click();
+    Thread.sleep(2000);
+
+    EmploymentAndIncomeTests e = new EmploymentAndIncomeTests();
+    System.out.println("Gross monthly income: " + "$"+ e.grossMonthly);
 
 
+    Driver.getDriver().findElement(By.id("steps-uid-0-t-6")).click(); // return to summary page
+    Thread.sleep(2000);
+    Driver.getDriver().findElement(By.xpath("//a[@href=\"#finish\"]")).click(); // saves forms
 
+    List<List<Object>> grossMonthlyIncome = DataBaseUtility.getQueryResultAsListOfLists("select gross_monthly_income from tbl_mortagage where gross_monthly_income ="+e.grossMonthly+"");
+    List<List<Object>> checkGrossMonthlyIncome = DataBaseUtility.getQueryResultAsListOfLists("select gross_monthly_income from tbl_mortagage ORDER BY id DESC limit 1;");
 
+    System.out.println( "expected amount: $"+ grossMonthlyIncome.get(0).get(0));
 
+    Assert.assertEquals(checkGrossMonthlyIncome, grossMonthlyIncome);
 
     }
+    /*@Test
+    public void t5() throws InterruptedException {
+
+        Driver.getDriver().findElement(By.id("b_email")).click();
+        Thread.sleep(2000);// click on pre approval
+//
+//
+        PersonalInformationPage p  = new PersonalInformationPage();
+
+        System.out.println("here "+p.email.getText().toString());
+//
+//        Driver.getDriver().findElement(By.id("")).click(); // return to summary page
+//        Thread.sleep(2000);
+//        Driver.getDriver().findElement(By.xpath("")).click(); // saves forms
+//
+//        List<List<Object>> cellPhoneNo = DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage where b_cell =" + p.cellPhone + "");
+//        List<List<Object>> checkCellPhoneNo = DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage order by id desc limit 1;");
+//
+//        System.out.println("expected estimated purchase price: $" + cellPhoneNo.get(0).get(0));
+//
+//        Assert.assertEquals(checkCellPhoneNo, cellPhoneNo);
+
+    }
+*/
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

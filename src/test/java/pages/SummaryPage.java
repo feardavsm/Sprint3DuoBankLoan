@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import uitests.SummaryPageTests;
 
 public class SummaryPage {
 
@@ -23,5 +24,7 @@ public class SummaryPage {
 
     @FindBy(xpath = "//a[contains(text(),'Edit')]")
     public WebElement allEditButtons;
+
+
 
 }
