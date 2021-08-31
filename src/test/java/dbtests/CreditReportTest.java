@@ -8,7 +8,7 @@ import uitests.TestBase;
 import utilities.ConfigReader;
 import utilities.DataBaseUtility;
 
-public class CreditReportTest extends TestBase {
+public class CreditReportTest1 extends TestBase {
 
     @Test
     public void verifyUserSignUpFlowFromUIToDatabase() {
@@ -22,8 +22,8 @@ public class CreditReportTest extends TestBase {
 
         /*---------------------------------login--------------------------------------------*/
         LoginPage loginPage = new LoginPage ( );
-        loginPage.usernameField.sendKeys ( ConfigReader.getProperty ( "Nazulka@gmail.com" ) );
-        loginPage.passwordField.sendKeys ( ConfigReader.getProperty ( "Toreador5!" ) );
+        loginPage.usernameField.sendKeys ( ConfigReader.getProperty ( "username3" ) );
+        loginPage.passwordField.sendKeys ( ConfigReader.getProperty ( "password3" ) );
         loginPage.loginButton.click ( );
         loginPage.mortgageApplicationMenu.click ( );
 
@@ -51,7 +51,7 @@ public class CreditReportTest extends TestBase {
         personalInformationPage.email.sendKeys ( fake.internet ( ).emailAddress ( ) );
         personalInformationPage.dateOfBirth.sendKeys ( "01/01/2000" );
         personalInformationPage.ssn.sendKeys ( fake.number ( ).digits ( 9 ) );
-        Select selectBoxStatus = new Select ( personalInformationPage.martialStatus );
+        Select selectBoxStatus = new Select ( personalInformationPage.maritalStatus );
         selectBoxStatus.selectByIndex ( (int) ( 1 + ( Math.random ( ) * 3 ) ) );
         personalInformationPage.cellPhone.sendKeys ( fake.phoneNumber ( ).cellPhone ( ) );
         personalInformationPage.homePhone.sendKeys ( fake.phoneNumber ( ).phoneNumber ( ) );
@@ -78,4 +78,3 @@ public class CreditReportTest extends TestBase {
         }
     }
 }
-
