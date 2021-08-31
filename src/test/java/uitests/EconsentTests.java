@@ -36,9 +36,9 @@ public class EconsentTests extends TestBase{
 
     public void EconsentWithValidCredentials(){
         EconsentPage econsentPage=new EconsentPage();
-        econsentPage.firsName.sendKeys(ConfigReader.getProperty("firstname"));
-        econsentPage.lastName.sendKeys(ConfigReader.getProperty("lastname"));
-        econsentPage.email.sendKeys(ConfigReader.getProperty("email"));
+        econsentPage.firsName.sendKeys(ConfigReader.getProperty("firstnameTK"));
+        econsentPage.lastName.sendKeys(ConfigReader.getProperty("lastnameTK"));
+        econsentPage.email.sendKeys(ConfigReader.getProperty("emailTK"));
         econsentPage.agreeButton.click();
         econsentPage.nextButton.click();
     }

@@ -43,7 +43,8 @@ public class SummaryPageTests extends TestBase {
     @Test
     public void t1() {
      //SummaryPage s = new SummaryPage();
-     //  s.saveButton.click();
+     //   s.saveButton.click();
+
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
 
@@ -53,23 +54,13 @@ public class SummaryPageTests extends TestBase {
         for (WebElement e: edits) {
             System.out.println(e.getText());
             count++;
-
         }
         Assert.assertEquals(count, 5);// there are 5 edit buttons
-
     }
-
 @Test
     public void t2(){
     Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
-
 }
-
-
-
-
-
-
     }
 
 
