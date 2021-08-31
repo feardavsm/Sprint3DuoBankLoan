@@ -8,7 +8,7 @@ import uitests.TestBase;
 import utilities.ConfigReader;
 import utilities.DataBaseUtility;
 
-public class CreditReportTest1 extends TestBase {
+public class CreditReportTest extends TestBase {
 
     @Test
     public void verifyUserSignUpFlowFromUIToDatabase() {
