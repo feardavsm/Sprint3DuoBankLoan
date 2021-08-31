@@ -55,17 +55,17 @@ public class DataBaseUtility {
     }
 
 
-    public static void updateQuery(String query) {
+    public static void updateQuery(String query) throws SQLException {
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        try {
+//        try {
             int result = statement.executeUpdate(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
     }
 
 
