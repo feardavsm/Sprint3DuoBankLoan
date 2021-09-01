@@ -14,6 +14,7 @@ import utilities.ConfigReader;
 import utilities.DataBaseUtility;
 
 
+
 import java.sql.SQLException;
 import java.util.*;
 
@@ -117,51 +118,53 @@ public class PersonalInfoTest extends TestBase {
     }
 
     @Test
-    public void verifyPersonalInfoUpdate() throws SQLException {
+    public void cellNumUpdate() throws SQLException {
 
         // Syntax to update certain column in the DataBase
-        String expectedName = "(607) 009 0150";
+        String expectedName = "908-555-9087";
         String personalInfo = "UPDATE tbl_mortagage SET b_cell='" + expectedName + "' where id='556'";
         // Send update query to mortagage table under user ID " " and changes it from actual to expected
         DataBaseUtility.updateQuery(personalInfo);
     }
 
         @Test
-        public void verifyPersonalInfoDuplicates () throws SQLException {
+        public void verifyEmailDuplicates () throws SQLException {
         // Syntax to verify for any duplicates in the DataBase
 
             // Testing for duplicate firstnames
-            List<List<Object>> lisOflists = DataBaseUtility.getQueryResultAsListOfLists("SELECT\n" +
-                    "\tb_firstName, COUNT(b_firstName),\n" +
-                    "    b_lastName, COUNT(b_lastName),\n" +
-                    "    b_email, COUNT(b_email),\n" +
-                    "    b_ssn, COUNT(b_ssn),\n" +
-                    "    b_marital, COUNT(b_marital),\n" +
-                    "    b_cell, COUNT(b_cell)\n" +
-                    "FROM\n" +
-                    "\tloan.tbl_mortagage\n" +
-                    "GROUP BY\n" +
-                    "\tb_firstName,\n" +
-                    "    b_lastName,\n" +
-                    "    b_email, \n" +
-                    "    b_ssn, \n" +
-                    "    b_marital, \n" +
-                    "    b_cell\n" +
-                    "HAVING COUNT(b_firstName) > 1\n" +
-                    "    AND COUNT(b_lastName) > 1\n" +
-                    "\tAND COUNT(b_email) > 1\n" +
-                    "    AND COUNT(b_ssn) > 1\n" +
-                    "    AND COUNT(b_marital) > 1\n" +
-                    "    AND COUNT(b_cell) > 1;");
-
-            // If the list is empty test passes
-            Assert.assertFalse(lisOflists.isEmpty(), "The list is not empty, its size is " + lisOflists.size());
-            System.out.println(lisOflists);
+            List<List<Object>> lisOfLists = DataBaseUtility.getQueryResultAsListOfLists("select b_email, count(*) from tbl_mortagage group by b_email having count(*)>1;");
+            Assert.assertFalse(lisOfLists.isEmpty(), "The list is not empty, its size is " + lisOfLists.size());
+            System.out.println(lisOfLists);
 
 
 
 
         }
 
+    @Test
+    public void verifyNoDuplicateCell(){
 
+
+        List<List<Object>> lisOflists = DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage");
+
+
+        List<String> cellNum = new ArrayList<>();
+
+
+        for (List<Object> lisOflist : lisOflists) {
+            cellNum.add((String)(lisOflist.get(0)));
+        }
+
+        Collections.sort(cellNum);
+
+        boolean noDuplicate = true;
+        for (int i = 0; i < cellNum.size()-1; i++) {
+            if(cellNum.get(i).equals(cellNum.get(i+1))){
+                noDuplicate = false;
+            }
+        }
+
+        Assert.assertFalse(noDuplicate);
+        System.out.println(cellNum);
+    }
     }
