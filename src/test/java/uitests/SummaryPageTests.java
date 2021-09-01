@@ -139,10 +139,10 @@ public class SummaryPageTests extends TestBase {
 //        Thread.sleep(2000);
 //        Driver.getDriver().findElement(By.xpath("")).click(); // saves forms
 //
-//        List<List<Object>> cellPhoneNo = DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage where b_cell =" + p.cellPhone + "");
-//        List<List<Object>> checkCellPhoneNo = DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage order by id desc limit 1;");
+//        List<List<Object>> emailAddress = DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage where b_cell =" + p.cellPhone + "");
+//        List<List<Object>> checkEmailAddress =DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage order by id desc limit 1;");
 //
-//        System.out.println("expected estimated purchase price: $" + cellPhoneNo.get(0).get(0));
+//        System.out.println("" + .get(0).get(0));
 //
 //        Assert.assertEquals(checkCellPhoneNo, cellPhoneNo);
 
