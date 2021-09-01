@@ -47,16 +47,16 @@ public class SummaryPageTests extends TestBase {
         Thread.sleep(3000);
     }
 
-
+   // Test t1 Positive log-in test
     @Test
     public void summaryPositiveTest() {
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[contains(text(),'Save')]")));
         }
 
-
+        // Test t2 checks for Edit buttons on summary page and returns the amount/success if 5.
     @Test
-    public void t1() {
+    public void t2() {
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("PreApproval Inquiry"));
         Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
 
@@ -76,14 +76,15 @@ public class SummaryPageTests extends TestBase {
         }
 
     }
-
+// Test t3 checks if the webpage contains the text "Current Monthly Housing Expenses"
 @Test
-    public void t2(){
+    public void t3(){
     Assert.assertTrue(Driver.getDriver().getPageSource().contains("Current Monthly Housing Expenses"));
 
 }
+// Test t4 tests if monthly rental payment from ExpensesTest is ran and saved onto MySQL and relayed back.
 @Test
-    public void t3() throws InterruptedException {
+    public void t4() throws InterruptedException {
 
         Driver.getDriver().findElement(By.id("ExpenseEdit")).click();
         Thread.sleep(3000);
@@ -102,9 +103,9 @@ public class SummaryPageTests extends TestBase {
 
     Assert.assertEquals(checkMonthlyRentalPayment, monthlyRentalPayment);
 }
-
+    //  Test t5 tests if gross monthly income from EmploymentAndIncome is saved to MySQL table and relayed back.
 @Test
-    public void t4() throws InterruptedException {
+    public void t5() throws InterruptedException {
     Driver.getDriver().findElement(By.id("EmploymentIncomeEdit")).click();
     Thread.sleep(2000);
 
