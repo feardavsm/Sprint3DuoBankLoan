@@ -16,21 +16,26 @@ public class Expenses extends TestBase {
     public void RentalExpenses ( ) {
         /*--- creating connection*/
         DataBaseUtility.createConnection ( );
-        System.out.println ( " Connection is created " );
+
 
         /*--- setting the faker */
         Faker fake = new Faker ( );
 
         /*--- short cut to the "Expenses" page*/
         LoginPage loginPage = new LoginPage();
+
         do {loginPage.login(ConfigReader.getProperty("usernameTK"), ConfigReader.getProperty("passwordTK"));}
         while (!driver.getCurrentUrl().
+
         equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/dashboard.php"));
         loginPage.mortgageApplicationMenu.click();
+
         PreApprovalDetailsTests preApproval = new PreApprovalDetailsTests();
         preApproval.positiveTestPreApprovalDetails();
+
         PersonalInformationTests personalInformationTests = new PersonalInformationTests();
         personalInformationTests.verifyWithValidCredentials();
+
         ExpensesTests expensesTests = new ExpensesTests();
         expensesTests.verifyWithRentCheckBox();
 
@@ -38,8 +43,10 @@ public class Expenses extends TestBase {
 
        ExpensesPage expensesPage = new ExpensesPage();
        String expectedMonthlyRentalPay=fake.number().digits(4);
+
        expensesPage.monthlyRentalPayment.sendKeys(expectedMonthlyRentalPay);
        expensesPage.nextButton.click();
+
        // Inserting newly created credentials into the MySQL Database
        String rentalExpenses=
                  "INSERT INTO loan.tbl_mortagage (realtor_status, realtor_info, loan_officer_status, purpose_loan, " +
@@ -70,6 +77,7 @@ public class Expenses extends TestBase {
         /*---completing the application*/
         CreditReportTest creditReportTest = new CreditReportTest();
         creditReportTest.positiveAnswerForCreditReport();
+
         EconsentTests econsentTests = new EconsentTests ();
         econsentTests.EconsentWithValidCredentials();
 
@@ -83,7 +91,6 @@ public class Expenses extends TestBase {
     public void MortageExpenses ( ) {
           /*--- creating connection*/
         DataBaseUtility.createConnection ( );
-        System.out.println ( " Connection is created " );
 
         /*--- setting the faker */
         Faker fake = new Faker ( );
@@ -144,6 +151,7 @@ public class Expenses extends TestBase {
 
         CreditReportTest creditReportTest = new CreditReportTest();
         creditReportTest.positiveAnswerForCreditReport();
+
         EconsentTests econsentTests = new EconsentTests ();
         econsentTests.EconsentWithValidCredentials();
 
