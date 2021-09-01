@@ -8,6 +8,9 @@ import uitests.TestBase;
 import utilities.ConfigReader;
 import utilities.DataBaseUtility;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 public class CreditReportTest extends TestBase {
 
     @Test
@@ -51,7 +54,7 @@ public class CreditReportTest extends TestBase {
         personalInformationPage.email.sendKeys ( fake.internet ( ).emailAddress ( ) );
         personalInformationPage.dateOfBirth.sendKeys ( "01/01/2000" );
         personalInformationPage.ssn.sendKeys ( fake.number ( ).digits ( 9 ) );
-        Select selectBoxStatus = new Select ( personalInformationPage.maritalStatus );
+        Select selectBoxStatus = new Select ( personalInformationPage.martialStatus );
         selectBoxStatus.selectByIndex ( (int) ( 1 + ( Math.random ( ) * 3 ) ) );
         personalInformationPage.cellPhone.sendKeys ( fake.phoneNumber ( ).cellPhone ( ) );
         personalInformationPage.homePhone.sendKeys ( fake.phoneNumber ( ).phoneNumber ( ) );
@@ -77,4 +80,7 @@ public class CreditReportTest extends TestBase {
             creditReportPage.nextButton.click();
         }
     }
-}
+
+
+    }
+
