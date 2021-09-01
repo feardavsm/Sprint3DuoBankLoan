@@ -96,7 +96,7 @@ public class EConsentTest extends TestBase {
 
     }
 
-    @Test
+    @Test //Verifying information from DB
     public void verifyInfoFromDB() throws SQLException {
 
         DataBaseUtility.createConnection();
@@ -117,7 +117,7 @@ public class EConsentTest extends TestBase {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test //Updating Information in DB
     public void updateInfoInDB() throws SQLException {
 
 
@@ -138,33 +138,34 @@ public class EConsentTest extends TestBase {
         softAssert.assertAll();
     }
 
-    @Test
+    @Test //Checking if there are duplicate emails
     public void verifyNoDuplicateEmails() {
         List<List<Object>> lisOfLists = DataBaseUtility.getQueryResultAsListOfLists("select eConsent_declarer_Email, count(*) from tbl_mortagage group by b_email having count(*)>1;");
+        DataBaseUtility.getColumnNames("select * from tbl_mortagage limit 1");
         Assert.assertTrue(lisOfLists.isEmpty(), "The list is not empty, its size is " + lisOfLists.size()); //there is a duplicate email: wtess9539@gmail.com
     }
 
-    @Test
+    @Test //Checking if Econsent page has all columns
     public void verifyEConsentHasALlColumns(){
 
 
-        List<String> expectedColumns = Arrays.asList("eConsent_declarer_FirstName", "eConsent_declarer_LastName", "eConsent_declarer_Email");
-
-        List<String> actualColumns = DataBaseUtility.getColumnNames("select * from tbl_mortagage limit 1");
+        List<String> expectedColumns = Arrays.asList(
+                "eConsent_declarer", "eConsent_declarer_FirstName", "eConsent_declarer_LastName", "eConsent_declarer_Email");
+        List<String> actualColumns = DataBaseUtility.getColumnNames("select 'eConsent_declarer', 'eConsent_declarer_FirstName','eConsent_declarer_LastName','eConsent_declarer_Email'from tbl_mortagage limit 1");
 
         Assert.assertEquals(actualColumns, expectedColumns);
     }
 
-    @Test
+    @Test //Verify Econsent field types
     public void verifyECOnsentFieldType(){
 
         String query = "update tbl_mortagage set eConsent_declarer_LastName ='Guliyeva' where id='314'";
 
         try{
             DataBaseUtility.updateQuery(query);
-            Assert.assertTrue(false);
-        }catch(Exception exception1){
             Assert.assertTrue(true);
+        }catch(Exception exception1){
+            Assert.assertTrue(false);
         }
     }
 }
