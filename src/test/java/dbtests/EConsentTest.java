@@ -52,7 +52,7 @@ public class EConsentTest extends TestBase {
         personalInformationPage.email.sendKeys ( fake.internet ( ).emailAddress ( ) );
         personalInformationPage.dateOfBirth.sendKeys ( "01/01/2000" );
         personalInformationPage.ssn.sendKeys ( fake.number ( ).digits ( 9 ) );
-        Select selectBoxStatus = new Select ( personalInformationPage.martialStatus );
+        Select selectBoxStatus = new Select ( personalInformationPage.maritalStatus );
         selectBoxStatus.selectByIndex ( (int) ( 1 + ( Math.random ( ) * 3 ) ) );
         personalInformationPage.cellPhone.sendKeys ( fake.phoneNumber ( ).cellPhone ( ) );
         personalInformationPage.homePhone.sendKeys ( fake.phoneNumber ( ).phoneNumber ( ) );

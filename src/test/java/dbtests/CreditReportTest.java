@@ -61,7 +61,7 @@ public class CreditReportTest extends TestBase {
         personalInformationPage.nextButton.click ( );
 
 
-        /* -----------------------Rental Payment ---------------------------------------------------*/
+        /*------------------------Rental Payment ---------------------------------------------------*/
         ExpensesPage expensesPage = new ExpensesPage();
         Faker faker = new Faker();
         if (!expensesPage.rentChekBox.isSelected()) {
@@ -71,7 +71,7 @@ public class CreditReportTest extends TestBase {
         expensesPage.nextButton.click();
 
 
-        /* -----------------------Credit Report ---------------------------------------------------*/
+        /*------------------------Credit Report ---------------------------------------------------*/
         CreditReportPage creditReportPage = new CreditReportPage();
         if (!creditReportPage.yesCheckBox.isSelected()){
             creditReportPage.nextButton.click();
