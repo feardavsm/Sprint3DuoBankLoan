@@ -10,10 +10,12 @@ import uitests.*;
 import utilities.ConfigReader;
 import utilities.DataBaseUtility;
 
+import java.sql.*;
+
 public class Expenses extends TestBase {
         // @BeforeMethod(alwaysRun = true)
     @Test
-    public void RentalExpenses ( ) {
+    public void RentalExpenses ( ) throws SQLException {
         /*--- creating connection*/
         DataBaseUtility.createConnection ( );
 
@@ -44,12 +46,9 @@ public class Expenses extends TestBase {
        ExpensesPage expensesPage = new ExpensesPage();
        String expectedMonthlyRentalPay=fake.number().digits(4);
 
-       expensesPage.monthlyRentalPayment.sendKeys(expectedMonthlyRentalPay);
-       expensesPage.nextButton.click();
-
        // Inserting newly created credentials into the MySQL Database
        String rentalExpenses=
-                 "INSERT INTO loan.tbl_mortagage (realtor_status, realtor_info, loan_officer_status, purpose_loan, " +
+                 "INSERT INTO loan.tbl_mortagage (id, realtor_status, realtor_info, loan_officer_status, purpose_loan, " +
                 "est_purchase_price, down_payment, down_payment_percent, total_loan_amount, src_down_payment, add_fund_available, " +
                 "apply_co_borrower, b_firstName, b_middleName, b_lastName, b_suffix, b_email, b_dob, b_ssn, b_marital, " +
                 "b_cell, b_home, c_firstName, c_middleName, c_lastName, c_suffix, c_email, c_dob, c_ssn, c_marital, c_cell, " +
@@ -59,9 +58,9 @@ public class Expenses extends TestBase {
                 "c_gross_monthly_income, c_monthly_over_time, c_monthly_bonuses, c_monthly_commision, c_monthly_dividents, " +
                 "add_belong, income_source, amount, eConsent_declarer, eConsent_declarer_FirstName, eConsent_declarer_LastName, " +
                 "eConsent_declarer_Email, created_on, modified_on, loan_status, user_id)" +
-                "values" +
+                "values, active" +
                 "('','','','' " +
-                "'','','','','','', " +
+                "'','','','','','','', " +
                 "'','','','','','','','','', " +
                 "'','','','','','','','','','','', " +
                 "'','','"+expectedMonthlyRentalPay+"','','','','', " +
@@ -69,10 +68,11 @@ public class Expenses extends TestBase {
                 "'','','','','','', " +
                 "'','','','','', " +
                 "'','','','','','', " +
-                "'','','','','')" +
+                "'','','','','','')" +
                 "'')";
        DataBaseUtility.updateQuery(rentalExpenses);
        System.out.println("Displaying Expected Monthly Rental Pay : "+expectedMonthlyRentalPay);
+         expensesPage.nextButton.click();
 
         /*---completing the application*/
         CreditReportTest creditReportTest = new CreditReportTest();
@@ -84,6 +84,26 @@ public class Expenses extends TestBase {
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();",
                 driver.findElement(By.xpath("//a[contains(text(),'Save')]")));
+
+        String url = ConfigReader.getProperty ( "db_url" );
+        String user = ConfigReader.getProperty ( "db_user" );
+        String password = ConfigReader.getProperty ( "db_password" );
+        Connection conectionTK = ( DriverManager.getConnection ( url, user, password ) );
+        Statement statement = conectionTK.createStatement ( ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE );
+        ResultSet resultSet = statement.executeQuery ( "select * from loan.tbl_mortagage;" );
+        resultSet.last ( );
+        String expectedName=expectedMonthlyRentalPay;
+        Object actualName=resultSet.getObject ( "employer_name" );
+        if (expectedName.equals(actualName)){
+                System.out.println ("System is working perfect" );
+            }else{
+                System.out.println ("System needs to be fixed!" );
+                 }
+        System.out.println ( "Displaying Expected EMPLOYER NAME : " + expectedMonthlyRentalPay);
+        System.out.println ( "Displaying  Actual  EMPLOYER NAME : " + resultSet.getObject ( "employer_name" ) );
+
+
+
         }
 
 
