@@ -40,12 +40,7 @@ public class PreApprovalDetailsTests extends TestBase {
             preApprovalDetaisPage.checkBoxLoanOfficer1.click();
         }
 
-//        Select selectPurposeOfLoan = new Select(preApprovalDetaisPage.purposeOfLoan);
-//        selectPurposeOfLoan.selectByVisibleText("Purchase a Home");
 
-//        String actualText = preApprovalDetaisPage.purposeOfLoan.getText();
-//        String expectedText = "Purchase a Home";
-//        Assert.assertEquals(actualText, expectedText);
 
         preApprovalDetaisPage.estimatedPrice.sendKeys("600000");
         preApprovalDetaisPage.downPayment.sendKeys("100000");
@@ -58,10 +53,7 @@ public class PreApprovalDetailsTests extends TestBase {
 
         Assert.assertEquals(actualLoanAmount, expectedLoanAmount);
 
-//       Select selectAdditionalFunds = new Select(preApprovalDetaisPage.additionalFunds);
-//       selectAdditionalFunds.selectByVisibleText("Checking/Savings (most recent bank statement)");
 
-//        System.out.println(preApprovalDetaisPage.additionalFunds);
 
         preApprovalDetaisPage.next.click();
 
