@@ -12,7 +12,7 @@ import utilities.ConfigReader;
 
 
 public class ExpensesTests extends TestBase {
-    static  String num;
+    public static  String num;
 
 
     @BeforeMethod(alwaysRun = true)

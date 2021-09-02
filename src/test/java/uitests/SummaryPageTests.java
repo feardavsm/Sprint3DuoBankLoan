@@ -83,48 +83,48 @@ public class SummaryPageTests extends TestBase {
 
 }
 // Test t4 tests if monthly rental payment from ExpensesTest is ran and saved onto MySQL and relayed back.
-@Test
-    public void t4() throws InterruptedException {
-
-        Driver.getDriver().findElement(By.id("ExpenseEdit")).click();
-        Thread.sleep(3000);
-
-        ExpensesPage e = new ExpensesPage();
-        ExpensesTests et = new ExpensesTests();
-    System.out.println("monthly rental payment amount: $"+ et.num);
-
-    Driver.getDriver().findElement(By.id("steps-uid-0-t-6")).click();
-    Driver.getDriver().findElement(By.xpath("//a[@href=\"#finish\"]")).click();
-
-    List<List<Object>> monthlyRentalPayment = DataBaseUtility.getQueryResultAsListOfLists("select monthly_rental_payment from tbl_mortagage where monthly_rental_payment ="+et.num+"");
-    List<List<Object>> checkMonthlyRentalPayment = DataBaseUtility.getQueryResultAsListOfLists("select monthly_rental_payment from tbl_mortagage ORDER BY id DESC LIMIT 1;");
-
-    System.out.println("expected monthly rental payment amount: $" + monthlyRentalPayment.get(0).get(0));
-
-    Assert.assertEquals(checkMonthlyRentalPayment, monthlyRentalPayment);
-}
-    //  Test t5 tests if gross monthly income from EmploymentAndIncome is saved to MySQL table and relayed back.
-@Test
-    public void t5() throws InterruptedException {
-    Driver.getDriver().findElement(By.id("EmploymentIncomeEdit")).click();
-    Thread.sleep(2000);
-
-    EmploymentAndIncomeTests e = new EmploymentAndIncomeTests();
-    System.out.println("Gross monthly income: " + "$"+ e.grossMonthly);
-
-
-    Driver.getDriver().findElement(By.id("steps-uid-0-t-6")).click(); // return to summary page
-    Thread.sleep(2000);
-    Driver.getDriver().findElement(By.xpath("//a[@href=\"#finish\"]")).click(); // saves forms
-
-    List<List<Object>> grossMonthlyIncome = DataBaseUtility.getQueryResultAsListOfLists("select gross_monthly_income from tbl_mortagage where gross_monthly_income ="+e.grossMonthly+"");
-    List<List<Object>> checkGrossMonthlyIncome = DataBaseUtility.getQueryResultAsListOfLists("select gross_monthly_income from tbl_mortagage ORDER BY id DESC limit 1;");
-
-    System.out.println( "expected amount: $"+ grossMonthlyIncome.get(0).get(0));
-
-    Assert.assertEquals(checkGrossMonthlyIncome, grossMonthlyIncome);
-
-    }
+//@Test
+//    public void t4() throws InterruptedException {
+//
+//        Driver.getDriver().findElement(By.id("ExpenseEdit")).click();
+//        Thread.sleep(3000);
+//
+//        ExpensesPage e = new ExpensesPage();
+//        ExpensesTests et = new ExpensesTests();
+//    System.out.println("monthly rental payment amount: $"+ et.num);
+//
+//    Driver.getDriver().findElement(By.id("steps-uid-0-t-6")).click();
+//    Driver.getDriver().findElement(By.xpath("//a[@href=\"#finish\"]")).click();
+//
+//    List<List<Object>> monthlyRentalPayment = DataBaseUtility.getQueryResultAsListOfLists("select monthly_rental_payment from tbl_mortagage where monthly_rental_payment ="+et.num+"");
+//    List<List<Object>> checkMonthlyRentalPayment = DataBaseUtility.getQueryResultAsListOfLists("select monthly_rental_payment from tbl_mortagage ORDER BY id DESC LIMIT 1;");
+//
+//    System.out.println("expected monthly rental payment amount: $" + monthlyRentalPayment.get(0).get(0));
+//
+//    Assert.assertEquals(checkMonthlyRentalPayment, monthlyRentalPayment);
+//}
+//    //  Test t5 tests if gross monthly income from EmploymentAndIncome is saved to MySQL table and relayed back.
+//@Test
+//    public void t5() throws InterruptedException {
+//    Driver.getDriver().findElement(By.id("EmploymentIncomeEdit")).click();
+//    Thread.sleep(2000);
+//
+//    EmploymentAndIncomeTests e = new EmploymentAndIncomeTests();
+//    System.out.println("Gross monthly income: " + "$"+ e.grossMonthly);
+//
+//
+//    Driver.getDriver().findElement(By.id("steps-uid-0-t-6")).click(); // return to summary page
+//    Thread.sleep(2000);
+//    Driver.getDriver().findElement(By.xpath("//a[@href=\"#finish\"]")).click(); // saves forms
+//
+//    List<List<Object>> grossMonthlyIncome = DataBaseUtility.getQueryResultAsListOfLists("select gross_monthly_income from tbl_mortagage where gross_monthly_income ="+e.grossMonthly+"");
+//    List<List<Object>> checkGrossMonthlyIncome = DataBaseUtility.getQueryResultAsListOfLists("select gross_monthly_income from tbl_mortagage ORDER BY id DESC limit 1;");
+//
+//    System.out.println( "expected amount: $"+ grossMonthlyIncome.get(0).get(0));
+//
+//    Assert.assertEquals(checkGrossMonthlyIncome, grossMonthlyIncome);
+//
+//    }
     /*@Test
     public void t5() throws InterruptedException {
 

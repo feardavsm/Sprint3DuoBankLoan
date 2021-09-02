@@ -13,7 +13,7 @@ import utilities.ConfigReader;
 public class EmploymentAndIncomeTests extends TestBase{
 
 
-    static String grossMonthly;
+    public static String grossMonthly;
 
     @BeforeMethod(alwaysRun = true)
     public void loginSetup() {
