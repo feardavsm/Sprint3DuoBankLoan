@@ -121,8 +121,8 @@ public class PersonalInfoTest extends TestBase {
     public void cellNumUpdate() throws SQLException {
 
         // Syntax to update certain column in the DataBase
-        String expectedName = "908-555-9087";
-        String personalInfo = "UPDATE tbl_mortagage SET b_cell='" + expectedName + "' where id='556'";
+        String expectedCell = "908-555-9087";
+        String personalInfo = "UPDATE tbl_mortagage SET b_cell='" + expectedCell + "' where id='556'";
         // Send update query to mortagage table under user ID " " and changes it from actual to expected
         DataBaseUtility.updateQuery(personalInfo);
     }
@@ -133,7 +133,7 @@ public class PersonalInfoTest extends TestBase {
 
             // Testing for duplicate firstnames
             List<List<Object>> lisOfLists = DataBaseUtility.getQueryResultAsListOfLists("select b_email, count(*) from tbl_mortagage group by b_email having count(*)>1;");
-            Assert.assertFalse(lisOfLists.isEmpty(), "The list is not empty, its size is " + lisOfLists.size());
+            Assert.assertTrue(lisOfLists.isEmpty(), "The list is not empty, its size is " + lisOfLists.size());
             System.out.println(lisOfLists);
 
 
@@ -164,7 +164,7 @@ public class PersonalInfoTest extends TestBase {
             }
         }
 
-        Assert.assertFalse(noDuplicate);
+        Assert.assertTrue(noDuplicate, "There are duplicated Cell numbers in the list");
         System.out.println(cellNum);
     }
     }
