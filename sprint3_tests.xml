@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="SPRINT 3 Tests">
+
+    <groups>
+        <run>
+            <include name="SPRINT_3"></include>
+        </run>
+    </groups>
+
+    <test name="SPRINT 3 Tests">
+
+
+
+        <packages>
+            <package name=".*"></package>
+        </packages>
+
+    </test> <!-- Test -->
+</suite> <!-- Suite -->

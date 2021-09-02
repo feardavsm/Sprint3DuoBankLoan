@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class SignUpTest extends TestBase {
 
-    @Test
+    @Test(groups = {"SPRINT_3"})
     public void verifyUserSignUpFlowFromUIToDatabase(){
 
         // Checking connection to database is successful

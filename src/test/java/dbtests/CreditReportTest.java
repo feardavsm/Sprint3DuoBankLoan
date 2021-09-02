@@ -23,7 +23,7 @@ public class CreditReportTest extends TestBase {
         /*---------------------------------login--------------------------------------------*/
         LoginPage loginPage = new LoginPage ( );
         loginPage.usernameField.sendKeys ( ConfigReader.getProperty ( "username3" ) );
-        loginPage.passwordField.sendKeys ( ConfigReader.getProperty ( "Toreador5!" ) );
+        loginPage.passwordField.sendKeys ( ConfigReader.getProperty ( "password3" ) );
         loginPage.loginButton.click ( );
         loginPage.mortgageApplicationMenu.click ( );
 
@@ -61,7 +61,7 @@ public class CreditReportTest extends TestBase {
         personalInformationPage.nextButton.click ( );
 
 
-        /*------------------------Rental Payment ---------------------------------------------------*/
+        /* -----------------------Rental Payment ---------------------------------------------------*/
         ExpensesPage expensesPage = new ExpensesPage();
         Faker faker = new Faker();
         if (!expensesPage.rentChekBox.isSelected()) {
@@ -71,10 +71,13 @@ public class CreditReportTest extends TestBase {
         expensesPage.nextButton.click();
 
 
-        /*------------------------Credit Report ---------------------------------------------------*/
+        /* -----------------------Credit Report ---------------------------------------------------*/
         CreditReportPage creditReportPage = new CreditReportPage();
         if (!creditReportPage.yesCheckBox.isSelected()){
             creditReportPage.nextButton.click();
         }
     }
+
+
 }
+
