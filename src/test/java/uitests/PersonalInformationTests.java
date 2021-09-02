@@ -18,6 +18,8 @@ import java.io.IOException;
 
 public class PersonalInformationTests extends TestBase {
 
+
+
     @BeforeMethod(alwaysRun = true)
     public void loginSetup() {
         LoginPage loginPage = new LoginPage();
