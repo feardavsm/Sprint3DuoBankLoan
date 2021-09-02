@@ -1,6 +1,7 @@
 package uitests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -40,6 +41,14 @@ public class SummaryPageTests extends TestBase {
         Thread.sleep(3000);
     }
 //
+
+    @Test
+    public void summaryPositiveTest() {
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+        executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[contains(text(),'Save')]")));
+        }
+
+
     @Test
     public void t1() {
      //   SummaryPage s = new SummaryPage();

@@ -55,7 +55,7 @@ public class PersonalInformationTests extends TestBase {
         logger.info("Entering ssn");
         personalInformationPage.ssn.sendKeys(faker.number().digits(9));
         logger.info("Selecting martial status");
-        Select selectBoxStatus = new Select(personalInformationPage.martialStatus);
+        Select selectBoxStatus = new Select(personalInformationPage.maritalStatus);
         selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
         logger.info("Entering cell phone");
         personalInformationPage.cellPhone.sendKeys(faker.phoneNumber().cellPhone());
@@ -99,7 +99,7 @@ public class PersonalInformationTests extends TestBase {
         logger.info("Entering ssn");
         personalInformationPage.ssn.sendKeys(ssn);
         logger.info("Selecting martial status");
-        Select selectBoxStatus = new Select(personalInformationPage.martialStatus);
+        Select selectBoxStatus = new Select(personalInformationPage.maritalStatus);
         selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
         logger.info("Entering cell phone");
         personalInformationPage.cellPhone.sendKeys(cellPhone);
@@ -137,7 +137,7 @@ public class PersonalInformationTests extends TestBase {
         boolean ssnRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.ssn);
         logger.info("Checking whether ssn field is mandatory");
         Assert.assertTrue(ssnRequired);
-        boolean statusRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.martialStatus);
+        boolean statusRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.maritalStatus);
         logger.info("Checking whether status dropdown list is mandatory");
         Assert.assertTrue(statusRequired);
         boolean cellPhoneRequired = (Boolean) js.executeScript("return arguments[0].required;", personalInformationPage.cellPhone);
@@ -189,7 +189,7 @@ public class PersonalInformationTests extends TestBase {
         logger.info("Entering ssn");
         personalInformationPage.ssn.sendKeys(ssn);
         logger.info("Selecting martial status");
-        Select selectBoxStatus = new Select(personalInformationPage.martialStatus);
+        Select selectBoxStatus = new Select(personalInformationPage.maritalStatus);
         selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
         logger.info("Entering cell phone");
         personalInformationPage.cellPhone.sendKeys(cellPhone);
@@ -236,7 +236,7 @@ public class PersonalInformationTests extends TestBase {
         logger.info("Entering ssn");
         personalInformationPage.ssn.sendKeys(ssn);
         logger.info("Selecting martial status");
-        Select selectBoxStatus = new Select(personalInformationPage.martialStatus);
+        Select selectBoxStatus = new Select(personalInformationPage.maritalStatus);
         selectBoxStatus.selectByIndex((int) (1 + (Math.random() * 3)));
         logger.info("Entering cell phone");
         personalInformationPage.cellPhone.sendKeys(cellPhone);
