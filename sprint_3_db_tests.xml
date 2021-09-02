@@ -4,7 +4,10 @@
     <test verbose="2" preserve-order="true" name="Sprint 3 Database Tests">
 
         <classes>
+            <class name="dbtests.SignUpTest"></class>
             <class name="dbtests.LoginTest"></class>
+            <class name="dbtests.PreApprovalPageTests"></class>
+            <class name="dbtests.PersonalInfoTest"></class>
         </classes>
 
 <!--        <packages>-->

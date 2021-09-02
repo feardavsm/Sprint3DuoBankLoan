@@ -41,7 +41,7 @@ public class DataBaseUtility {
     }
 
 
-    private static void executeQuery(String query) {
+    public static void executeQuery(String query) {
         try {
             statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
         } catch (SQLException e) {
