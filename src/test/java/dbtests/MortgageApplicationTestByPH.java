@@ -88,5 +88,18 @@ public class MortgageApplicationTestByPH extends TestBase {
         Assert.assertTrue(noDuplicate, "There are duplicated SSN numbers in the list");
     }
 
+    @Test
+    public void verifyEstPurchasePriceFieldRange(){
+
+        String query = "update tbl_mortagage set est_purchase_price ='5000000000' where id='600'";
+
+        try{
+            DataBaseUtility.updateQuery(query);
+            Assert.assertTrue(true);
+        }catch(Exception exception1){
+            Assert.assertTrue(false);
+        }
+    }
+
 
 }

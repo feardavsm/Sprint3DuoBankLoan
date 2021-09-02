@@ -1,0 +1,13 @@
+uitests\LoginTests.class
+uitests\CreditReportTest.class
+uitests\EmploymentAndIncomeTests.class
+uitests\PersonalInformationTests.class
+utilities\DataBaseUtility.class
+uitests\SummaryPageTests.class
+uitests\SignUpTests.class
+uitests\TestBase.class
+dbtests\SignUpTest.class
+uitests\EconsentTests.class
+dbtests\LoginTest.class
+uitests\PreApprovalDetailsTests.class
+uitests\ExpensesTests.class
