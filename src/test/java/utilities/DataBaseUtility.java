@@ -124,6 +124,7 @@ public class DataBaseUtility {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        System.out.println(columns);
         return columns;
     }
 

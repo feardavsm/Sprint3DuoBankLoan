@@ -13,10 +13,10 @@ import uitests.TestBase;
 import utilities.ConfigReader;
 import utilities.DataBaseUtility;
 
+
+
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class PersonalInfoTest extends TestBase {
 
@@ -40,7 +40,7 @@ public class PersonalInfoTest extends TestBase {
         String expectedRetailEmail = new Faker().internet().emailAddress();
         String expectedEstPurchasePrice = new Faker().number().digits(6);
         String expectedDownPaymentAmount = new Faker().number().digits(5);
-        int expectedDownPaymentPercentage = new Faker().number().numberBetween(10,100);
+        int expectedDownPaymentPercentage = new Faker().number().numberBetween(10, 100);
         String expectedTotalLoanAmount = new Faker().number().digits(5);
         String expectedMonthlyRentalPayment = new Faker().number().digits(4);
         String expectedEmployeeName = new Faker().company().name();
@@ -93,13 +93,13 @@ public class PersonalInfoTest extends TestBase {
                 "add_belong, income_source, amount, eConsent_declarer, eConsent_declarer_FirstName, eConsent_declarer_LastName, " +
                 "eConsent_declarer_Email, created_on, modified_on, loan_status, user_id)" +
                 "values" +
-                "('1', '"+expectedRetailerFullName+", "+expectedRetailEmail+"', '1', 'Purchase a Home', '"+expectedEstPurchasePrice+"', " +
-                "'"+expectedDownPaymentAmount+"', '"+expectedDownPaymentPercentage+"', '"+expectedTotalLoanAmount+"', " +
-                "'Checking/Savings (most recent bank statement)', '', '2', '"+expectedFirstName+"', '', '"+expectedLastName+"', '', " +
-                "'"+expectedEmail+"', '', '"+expectedSsn+"', '"+expectedMaritalStatus+"', '"+expectedCell+"', '', '', '', '', '', '', '', '', '', '', '', 'Rent', " +
-                "'"+expectedMonthlyRentalPayment+"', '', '"+expectedEmployeeName+"', '', '', '', '', '', '', '', '', '', '', '', '', '', " +
-                "'"+expectedGrossMonthlyIncome+"', '', '', '', '', '', '', '', '', '', '', '', '', '', '"+expectedFirstName+"', '"+expectedLastName+"', " +
-                "'"+expectedEmail+"', '"+expectedDate+"', '', '', '"+expectedUserId+"')";
+                "('1', '" + expectedRetailerFullName + ", " + expectedRetailEmail + "', '1', 'Purchase a Home', '" + expectedEstPurchasePrice + "', " +
+                "'" + expectedDownPaymentAmount + "', '" + expectedDownPaymentPercentage + "', '" + expectedTotalLoanAmount + "', " +
+                "'Checking/Savings (most recent bank statement)', '', '2', '" + expectedFirstName + "', '', '" + expectedLastName + "', '', " +
+                "'" + expectedEmail + "', '', '" + expectedSsn + "', '" + expectedMaritalStatus + "', '" + expectedCell + "', '', '', '', '', '', '', '', '', '', '', '', 'Rent', " +
+                "'" + expectedMonthlyRentalPayment + "', '', '" + expectedEmployeeName + "', '', '', '', '', '', '', '', '', '', '', '', '', '', " +
+                "'" + expectedGrossMonthlyIncome + "', '', '', '', '', '', '', '', '', '', '', '', '', '', '" + expectedFirstName + "', '" + expectedLastName + "', " +
+                "'" + expectedEmail + "', '" + expectedDate + "', '', '', '" + expectedUserId + "')";
 
         // Updating the MySQL Query Database
         DataBaseUtility.updateQuery(query);
@@ -112,29 +112,59 @@ public class PersonalInfoTest extends TestBase {
                 "Marital Status: " + expectedMaritalStatus + " | Cell Phone: " + expectedCell);
         System.out.println('\n' + "You Can Check To See In your MySQL Database Whether These Credentials Match.");
 
-        //String query_email = "select * from loan.tbl_user where email = '"+expectedEmail+"'";
 
 
-    }
-
-    @Test
-    public void verifyRealtorInfoUpdate() throws SQLException {
-
-        String expectedName = "あおい";
-        String realtorInfo = "UPDATE tbl_mortagage SET realtor_info='"+expectedName+"' where id='314'";
-        // Send update query to mortagage table under user ID 314 and changes it from actual to expected
-        DataBaseUtility.updateQuery(realtorInfo);
 
     }
 
     @Test
-    public void verifyNoDuplicateEmails(){
+    public void cellNumUpdate() throws SQLException {
 
-        List<List<Object>> lisOflists = DataBaseUtility.getQueryResultAsListOfLists("select b_email, count(*) from loan.tbl_mortagage group by b_email having count(*)>1");
-
-        // If the list is empty test passes
-
-        Assert.assertFalse(lisOflists.isEmpty(), "The list is not empty, its size is "  + lisOflists.size());
-        System.out.println(lisOflists);
+        // Syntax to update certain column in the DataBase
+        String expectedCell = "908-555-9087";
+        String personalInfo = "UPDATE tbl_mortagage SET b_cell='" + expectedCell + "' where id='556'";
+        // Send update query to mortagage table under user ID " " and changes it from actual to expected
+        DataBaseUtility.updateQuery(personalInfo);
     }
-}
+
+        @Test
+        public void verifyEmailDuplicates () throws SQLException {
+        // Syntax to verify for any duplicates in the DataBase
+
+            // Testing for duplicate firstnames
+            List<List<Object>> lisOfLists = DataBaseUtility.getQueryResultAsListOfLists("select b_email, count(*) from tbl_mortagage group by b_email having count(*)>1;");
+            Assert.assertTrue(lisOfLists.isEmpty(), "The list is not empty, its size is " + lisOfLists.size());
+            System.out.println(lisOfLists);
+
+
+
+
+        }
+
+    @Test
+    public void verifyNoDuplicateCell(){
+
+
+        List<List<Object>> lisOflists = DataBaseUtility.getQueryResultAsListOfLists("select b_cell from tbl_mortagage");
+
+
+        List<String> cellNum = new ArrayList<>();
+
+
+        for (List<Object> lisOflist : lisOflists) {
+            cellNum.add((String)(lisOflist.get(0)));
+        }
+
+        Collections.sort(cellNum);
+
+        boolean noDuplicate = true;
+        for (int i = 0; i < cellNum.size()-1; i++) {
+            if(cellNum.get(i).equals(cellNum.get(i+1))){
+                noDuplicate = false;
+            }
+        }
+
+        Assert.assertTrue(noDuplicate, "There are duplicated Cell numbers in the list");
+        System.out.println(cellNum);
+    }
+    }
