@@ -11,6 +11,7 @@ import utilities.DataBaseUtility;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class PreApprovalPageTests extends TestBase {
 
@@ -57,7 +58,7 @@ public class PreApprovalPageTests extends TestBase {
     //3. Verify Realtor Status field range - make sure that the user cannot enter value higher/lower than the int
     @Test
     public void verifyRealtorStatusFiledRange()  {
-        String query = "update tbl_mortagage set loan_officer_status ='3000000000' where id='314'";
+        String query = "update tbl_mortagage set loan_officer_status ='300000000000000' where id='314'";
 
         try{
             DataBaseUtility.updateQuery(query);
@@ -68,7 +69,7 @@ public class PreApprovalPageTests extends TestBase {
 
     }
 
-    //4. Verify that the Realtor Statis fild accepts onlu numeric data
+    //4. Verify that the Realtor Status field accepts only numeric data
     @Test
     public void verifyRealtorStatusFieldType(){
 
@@ -81,6 +82,50 @@ public class PreApprovalPageTests extends TestBase {
             Assert.assertTrue(true);
         }
     }
+
+    //5. Verify unicode support
+
+    @Test
+    public void verifyUnicodeSupport() throws SQLException {
+
+        String expectedRealtorInfo = "黄 麗";
+        String query = "update tbl_mortagage set realtor_info ='"+expectedRealtorInfo+"' where id='517'";
+        DataBaseUtility.updateQuery(query);
+
+        Map<String, Object> map = DataBaseUtility.getQueryResultListOfMaps("select * from tbl_mortagage where id = '517'").get(0);
+
+        String actualRealtorInfo = (String)(map.get("realtor_info"));
+
+        Assert.assertEquals(actualRealtorInfo, expectedRealtorInfo);
+    }
+
+    // 6. Verify that null values are not allowed for the primary key column
+    // For the Mortgage table id column should not accept null value
+
+    @Test
+    public void verifyThrowsExceptionForNullValueForPrimaryKeyColumn() throws SQLException {
+        String query = "update tbl_mortagage set id = null where id = '314'";
+
+        try{
+            DataBaseUtility.updateQuery(query);
+            Assert.assertTrue(false);
+
+        }catch(Exception exception1){
+            Assert.assertTrue(true);
+
+        }
+        String queryToReverseTheNullValueBack = "update tbl_mortagage set id = '314' where id = '0'";
+        DataBaseUtility.updateQuery(queryToReverseTheNullValueBack);
+    }
+
+    //7. Verify that null calue is not allowed for primary key column. If it accepts the value, it means the system has a bug
+//    @Test
+//    public void verifyNullValueNotAllowedForPrimaryKeyColumn(){
+//
+//    }
+
+
+
 
 
 
