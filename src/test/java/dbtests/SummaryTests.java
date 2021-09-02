@@ -68,7 +68,7 @@ public class SummaryTests extends TestBase {
         Thread.sleep(2000);
 
         EmploymentAndIncomeTests e = new EmploymentAndIncomeTests();
-        System.out.println("Gross monthly income: " + "$"+ e.grossMonthly);
+        System.out.println("Gross monthly income is: " + "$"+ e.grossMonthly);
 
 
         Driver.getDriver().findElement(By.id("steps-uid-0-t-6")).click(); // return to summary page
