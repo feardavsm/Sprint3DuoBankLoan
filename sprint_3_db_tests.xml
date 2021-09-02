@@ -3,16 +3,16 @@
 <suite name="Sprint 3 Database Test Suite">
     <test verbose="2" preserve-order="true" name="Sprint 3 Database Tests">
 
-        <classes>
-            <class name="dbtests.SignUpTest"></class>
-            <class name="dbtests.LoginTest"></class>
-            <class name="dbtests.PreApprovalPageTests"></class>
-            <class name="dbtests.PersonalInfoTest"></class>
-        </classes>
+<!--        <classes>-->
+<!--            <class name="dbtests.SignUpTest"></class>-->
+<!--            <class name="dbtests.LoginTest"></class>-->
+<!--            <class name="dbtests.PreApprovalPageTests"></class>-->
+<!--            <class name="dbtests.PersonalInfoTest"></class>-->
+<!--        </classes>-->
 
-<!--        <packages>-->
-<!--            <package name="dbtests"></package>-->
-<!--        </packages>-->
+        <packages>
+            <package name="dbtests"></package>
+        </packages>
 
     </test>
 </suite>

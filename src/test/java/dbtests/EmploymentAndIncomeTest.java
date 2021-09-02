@@ -19,8 +19,7 @@ import static utilities.DataBaseUtility.executeQuery;
 
 
 public class EmploymentAndIncomeTest extends TestBase {
-    public static void main ( String[] args ) {
-    }
+
     @Test
     public void CheckingTableStability ( ){
 

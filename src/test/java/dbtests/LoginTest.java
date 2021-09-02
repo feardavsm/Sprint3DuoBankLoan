@@ -34,7 +34,7 @@ public class LoginTest extends TestBase {
         String query = "INSERT INTO loan.tbl_user ( email, password, first_name, last_name, phone, image, type, " +
                 "created_at, modified_at, zone_id, church_id, country_id, active) " +
                 "values " +
-                "('"+expectedEmailAddress+"', '"+md5hash+"','"+expectedFirstName+"', '"+expectedLastName+"', '', '', " +
+                "('" + expectedEmailAddress + "', '" + md5hash + "','" + expectedFirstName + "', '" + expectedLastName + "', '', '', " +
                 "'2', '', '', '0', '0', '0', '1')";
 
         // Verifying the user credentials in the UI
@@ -52,5 +52,4 @@ public class LoginTest extends TestBase {
 
     }
 
-
-    }
+}

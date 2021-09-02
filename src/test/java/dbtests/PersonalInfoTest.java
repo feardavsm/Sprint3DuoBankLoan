@@ -24,16 +24,15 @@ public class PersonalInfoTest extends TestBase {
     public void verifyPersonalInformationFromDatabaseToUI() throws SQLException {
 
         // Login In To Web Application
-        LoginPage loginPage = new LoginPage ( );
-        loginPage.usernameField.sendKeys ( ConfigReader.getProperty ( "username2" ) );
-        loginPage.passwordField.sendKeys ( ConfigReader.getProperty ( "password2" ) );
-        loginPage.loginButton.click ( );
-        loginPage.mortgageApplicationMenu.click ( );
+        LoginPage loginPage = new LoginPage();
+        logger.info("Logging in");
+        loginPage.login(ConfigReader.getProperty("username2"), ConfigReader.getProperty("password2"));
 
         // Processing PreApproval Credentials InOrder To Proceed With The Personal Information Testing
         loginPage.mortgageApplicationMenu.click();
         PreApprovalDetailsTests preApproval = new PreApprovalDetailsTests();
         preApproval.positiveTestPreApprovalDetails();
+
 
         // Generating Random Realtor & User Credentials For Database Insertion
         Faker faker = new Faker();

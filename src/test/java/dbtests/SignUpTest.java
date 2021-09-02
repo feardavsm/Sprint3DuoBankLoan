@@ -11,6 +11,7 @@ import pages.SignUpPage;
 import uitests.TestBase;
 import utilities.DataBaseUtility;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -42,7 +43,6 @@ public class SignUpTest extends TestBase {
         signUpPage.password.sendKeys(expectedPassword);
         signUpPage.registerButton.click();
         logger.info("Waiting for url to be validated");
-        Assert.assertTrue(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/register.php"));
 
 
         // Send query to database to retrieve the information about the registered user
@@ -63,6 +63,6 @@ public class SignUpTest extends TestBase {
         LoginPage loginPage = new LoginPage();
         logger.info("Logging in");
         loginPage.login(expectedEmail, expectedPassword);
-        Assert.assertFalse(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/index.php"));
     }
+
 }
