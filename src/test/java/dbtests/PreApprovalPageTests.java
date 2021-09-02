@@ -115,14 +115,10 @@ public class PreApprovalPageTests extends TestBase {
 
         }
         String queryToReverseTheNullValueBack = "update tbl_mortagage set id = '314' where id = '0'";
-        DataBaseUtility.updateQuery(queryToReverseTheNullValueBack);
+        DataBaseUtility.updateQuery(queryToReverseTheNullValueBack); //in case if query was accepted by the system sets the column value to the value before test
     }
 
-    //7. Verify that null calue is not allowed for primary key column. If it accepts the value, it means the system has a bug
-//    @Test
-//    public void verifyNullValueNotAllowedForPrimaryKeyColumn(){
-//
-//    }
+
 
 
 
