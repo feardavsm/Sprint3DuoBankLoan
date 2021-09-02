@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class LoginTest extends TestBase {
 
     @Test
-    public void verifyUserSignUpFlowFromDatabaseToUI(){
+    public void verifyUserSignUpFlowFromDatabaseToUI() throws SQLException {
 
         // Checking connection to database is successful
         logger.info("Connect to database");
