@@ -24,22 +24,22 @@
   <body>
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
-      <button class="button" id="button">Switch Retro Theme</button> <!-- button -->
+      <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
       <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
         <span>All suites</span>
-        <a href="#" class="collapse-all-link" title="Collapse/expand all the suites">
-          <img class="collapse-all-icon" src="collapseall.gif">
+        <a href="#" title="Collapse/expand all the suites" class="collapse-all-link">
+          <img src="collapseall.gif" class="collapse-all-icon">
           </img> <!-- collapse-all-icon -->
         </a> <!-- collapse-all-link -->
       </div> <!-- navigator-suite-header -->
       <div class="suite">
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
-            <a href="#" class="navigator-link" panel-name="suite-Sprint_3_Database_Test_Suite">
+            <a href="#" panel-name="suite-Sprint_3_Database_Test_Suite" class="navigator-link">
               <span class="suite-name border-passed">Sprint 3 Database Test Suite</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
@@ -50,37 +50,37 @@
             <div class="suite-section-content">
               <ul>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="test-xml-Sprint_3_Database_Test_Suite">
-                    <span>C:\Users\parvi\IdeaProjects\Sprint3DuoBankLoan\sprint_3_db_tests.xml</span>
+                  <a href="#" panel-name="test-xml-Sprint_3_Database_Test_Suite" class="navigator-link ">
+                    <span>sprint_3_db_tests.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="testlist-Sprint_3_Database_Test_Suite">
+                  <a href="#" panel-name="testlist-Sprint_3_Database_Test_Suite" class="navigator-link ">
                     <span class="test-stats">1 test</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="group-Sprint_3_Database_Test_Suite">
+                  <a href="#" panel-name="group-Sprint_3_Database_Test_Suite" class="navigator-link ">
                     <span>0 groups</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="times-Sprint_3_Database_Test_Suite">
+                  <a href="#" panel-name="times-Sprint_3_Database_Test_Suite" class="navigator-link ">
                     <span>Times</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="reporter-Sprint_3_Database_Test_Suite">
+                  <a href="#" panel-name="reporter-Sprint_3_Database_Test_Suite" class="navigator-link ">
                     <span>Reporter output</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="ignored-methods-Sprint_3_Database_Test_Suite">
+                  <a href="#" panel-name="ignored-methods-Sprint_3_Database_Test_Suite" class="navigator-link ">
                     <span>Ignored methods</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
-                  <a href="#" class="navigator-link " panel-name="chronological-Sprint_3_Database_Test_Suite">
+                  <a href="#" panel-name="chronological-Sprint_3_Database_Test_Suite" class="navigator-link ">
                     <span>Chronological view</span>
                   </a> <!-- navigator-link  -->
                 </li>
@@ -103,8 +103,8 @@
                     </span>
                     <div class="method-list-content passed suite-Sprint_3_Database_Test_Suite">
                       <span>
-                        <img width="3%" src="passed.png"/>
-                        <a href="#" class="method navigator-link" panel-name="suite-Sprint_3_Database_Test_Suite" title="dbtests.LoginTest" hash-for-method="verifyUserSignUpFlowFromDatabaseToUI">verifyUserSignUpFlowFromDatabaseToUI</a> <!-- method navigator-link -->
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Sprint_3_Database_Test_Suite" title="dbtests.LoginTest" class="method navigator-link" hash-for-method="verifyUserSignUpFlowFromDatabaseToUI">verifyUserSignUpFlowFromDatabaseToUI</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Sprint_3_Database_Test_Suite -->
@@ -137,14 +137,14 @@
         </div> <!-- panel Sprint_3_Database_Test_Suite -->
         <div panel-name="test-xml-Sprint_3_Database_Test_Suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\parvi\IdeaProjects\Sprint3DuoBankLoan\sprint_3_db_tests.xml</span>
+            <span class="header-content">/Users/fmirzaev/IdeaProjects/Sprint3DuoBankLoan/sprint_3_db_tests.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
 &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
 &lt;!DOCTYPE suite SYSTEM &quot;https://testng.org/testng-1.0.dtd&quot;&gt;
-&lt;suite guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot; name=&quot;Sprint 3 Database Test Suite&quot;&gt;
-  &lt;test thread-count=&quot;5&quot; verbose=&quot;2&quot; name=&quot;Sprint 3 Database Tests&quot;&gt;
+&lt;suite name=&quot;Sprint 3 Database Test Suite&quot; guice-stage=&quot;DEVELOPMENT&quot; verbose=&quot;0&quot;&gt;
+  &lt;test thread-count=&quot;5&quot; name=&quot;Sprint 3 Database Tests&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
       &lt;class name=&quot;dbtests.LoginTest&quot;/&gt;
     &lt;/classes&gt;
@@ -190,7 +190,7 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'verifyUserSignUpFlowFromDatabaseToUI')
 data.setCell(0, 2, 'dbtests.LoginTest')
-data.setCell(0, 3, 2806);
+data.setCell(0, 3, 2399);
 window.suiteTableData['Sprint_3_Database_Test_Suite']= { tableData: data, tableDiv: 'times-div-Sprint_3_Database_Test_Suite'}
 return data;
 }
@@ -227,20 +227,20 @@ return data;
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
               <div class="configuration-method before">
-                <span class="method-name">setupMethod(null, public void dbtests.LoginTest.verifyUserSignUpFlowFromDatabaseToUI())</span>
-                <span class="method-start">222 ms</span>
+                <span class="method-name">setupMethod(null, public void dbtests.LoginTest.verifyUserSignUpFlowFromDatabaseToUI() throws java.sql.SQLExcept...)</span>
+                <span class="method-start">258 ms</span>
               </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">verifyUserSignUpFlowFromDatabaseToUI</span>
-                <span class="method-start">4367 ms</span>
+                <span class="method-start">5206 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-method after">
                 <span class="method-name">tearDownMethod([TestResult name=verifyUserSignUpFlowFromDatabaseToUI status=SUCCESS method=LoginTest.verifyUserSign...)</span>
-                <span class="method-start">7174 ms</span>
+                <span class="method-start">7608 ms</span>
               </div> <!-- configuration-method after -->
               <div class="configuration-suite after">
                 <span class="method-name">tearDownReport</span>
-                <span class="method-start">7983 ms</span>
+                <span class="method-start">7797 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

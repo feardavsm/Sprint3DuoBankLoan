@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class LoginTest extends TestBase {
 
-    @Test(groups = {"SPRINT_3"})
+    @Test
     public void verifyUserSignUpFlowFromDatabaseToUI() throws SQLException {
 
         // Checking connection to database is successful
