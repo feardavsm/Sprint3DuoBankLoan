@@ -45,7 +45,6 @@ public class LoginTest extends TestBase {
         LoginPage loginPage = new LoginPage();
         logger.info("Logging in");
         loginPage.login(expectedEmailAddress, expectedPassword);
-        Assert.assertFalse(driver.getCurrentUrl().equals("http://duobank-env.eba-hjmrxg9a.us-east-2.elasticbeanstalk.com/index.php"));
 
         // Printing the newly created credentials that were used to sign up and login and
         System.out.println("Email Address: " + expectedEmailAddress + " | Expected Password: " + expectedPassword + " | Hash Password: " + md5hash +
